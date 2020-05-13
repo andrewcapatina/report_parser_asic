@@ -29,7 +29,7 @@ def main():
     print("Welcome to ASIC tool Report Parser.")
     print("Please type which tool has generated the reports.")
     print("Options are: " + ASIC_TOOLS[0] + ", " + ASIC_TOOLS[1])
-    tool_option = input()
+    tool_option = raw_input()
 
     # Checking if user selected synopsys tools
     if tool_option == ASIC_TOOLS[0]:
@@ -37,7 +37,7 @@ def main():
         print("Current reports available for parsing:")
         print("- .qor files")
         print("- .clock_qor files")
-        top_design = input("Please enter the design name.\n")
+        top_design = raw_input("Please enter the design name.\n")
 
         reports = []
         # Iterate through all stages of synopsys flow.
@@ -102,7 +102,7 @@ def main():
         print("Selected cadence tools.")
         print("Current reports available for parsing:")
         print("- .summary files")
-        top_design = input("Please enter the design name.\n")
+        top_design = raw_input("Please enter the design name.\n")
 
         stages_data = []
         # Add titles to columns before getting data.
