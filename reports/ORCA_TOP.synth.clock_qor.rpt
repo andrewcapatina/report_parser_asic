@@ -1,0 +1,39 @@
+ Info: Initializing timer in CLOCK_SYN_REPORT_MODE
+****************************************
+Report : clock qor
+        -type summary
+Design : ORCA_TOP
+Version: P-2019.03-SP1-VAL
+Date   : Sat Apr 25 14:35:20 2020
+****************************************
+
+Attributes
+===========
+M Master Clock
+G Generated Clock
+& Internal Generated Clock
+U User Defined Skew Group
+D Default Skew Group
+* Generated Clock Balanced Separately
+
+===========================================
+==== Summary Reporting for Corner slow ====
+===========================================
+
+================================================== Summary Table for Corner slow ===================================================
+Clock /                               Attrs     Sinks Levels    Clock     Clock     Clock       Max    Global  Trans DRC  Cap DRC
+Skew Group                                                   Repeater  Repeater   Stdcell   Latency      Skew     Count     Count
+                                                                Count      Area      Area
+------------------------------------------------------------------------------------------------------------------------------------
+### Mode: func, Scenario: func_slow
+SDRAM_CLK                               M,D      2852     17      349   1080.11   1107.56      2.08      0.08         6         2
+ SD_DDR_CLK                               G         0      0        0      0.00      0.00        --        --         0         0
+ SD_DDR_CLKn                              G         0      0        0      0.00      0.00        --        --         0         0
+SYS_2x_CLK                              M,D      1910     26      366   1139.33   1259.54      2.31      0.08         7         0
+ SYS_CLK                                  G      1714     13      301    955.33    972.86      1.68      0.08         7         0
+PCI_CLK                                 M,D       386     10       56    168.75    176.12      1.48      0.05         1         1
+------------------------------------------------------------------------------------------------------------------------------------
+All Clocks                                       5148     26      771   2388.19   2543.22      2.31      0.08        14         3
+
+
+1
