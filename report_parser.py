@@ -14,11 +14,23 @@ import cadence_parser as cp
 import synopsys_parser as sp
 
 import pandas as pd
+import sys
 
 FOLDER_READ_PATH = "reports/"       # Location of reports to be parsed.
 FOLDER_WRITE_PATH = "outputs/"      # Location of the output parsed file.
 
 ASIC_TOOLS = ["synopsys", "cadence"]    # Set of tools that generates reports.
+
+def write_data_to_text(top_design, to_write):
+    """
+
+    """
+    file_path = FOLDER_WRITE_PATH + top_design + '_report_text.txt'
+    with open(file_path, 'w') as txtfile:
+        for row in to_write:
+            txtfile.write(row)
+
+
 
 
 def main():
@@ -29,15 +41,21 @@ def main():
     print("Welcome to ASIC tool Report Parser.")
     print("Please type which tool has generated the reports.")
     print("Options are: " + ASIC_TOOLS[0] + ", " + ASIC_TOOLS[1])
-    tool_option = raw_input()
-
+    if sys.version_info[0] < 3:
+        tool_option = raw_input()
+    else:
+        tool_option = input()
     # Checking if user selected synopsys tools
     if tool_option == ASIC_TOOLS[0]:
         print("Selected synopsys tools.")
         print("Current reports available for parsing:")
         print("- .qor files")
         print("- .clock_qor files")
-        top_design = raw_input("Please enter the design name.\n")
+        if sys.version_info[0] < 3:
+            top_design = raw_input("Please enter the design name.\n")
+        else:
+            top_design = input("Please enter the design name\n")
+
 
         reports = []
         # Iterate through all stages of synopsys flow.
@@ -97,13 +115,17 @@ def main():
         # Write results to CSV file.
         sp.write_qor_to_csv(top_design, reports)
 
+        write_data_to_text(top_design, reports)
+
     # Checking if user selected Cadence tools.
     if tool_option == ASIC_TOOLS[1]:
         print("Selected cadence tools.")
         print("Current reports available for parsing:")
         print("- .summary files")
-        top_design = raw_input("Please enter the design name.\n")
-
+        if sys.version_info[0] < 3:
+            top_design = raw_input("Please enter the design name.\n")
+        else:
+            top_design = input("Please enter the design name.\n")
         stages_data = []
         # Add titles to columns before getting data.
         stages_data.append(cp.SUMMARY_COLUMNS)

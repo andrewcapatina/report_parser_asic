@@ -11,6 +11,7 @@
     <OutputPath>.</OutputPath>
     <Name>report_parser</Name>
     <RootNamespace>report_parser</RootNamespace>
+    <InterpreterId>Global|VisualStudio|python3</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,6 +39,9 @@
     <Content Include="reports\fifo1_sram_postRoute.summary" />
     <Content Include="reports\fifo1_sram_preCTS.summary" />
     <Content Include="reports\fifo1_sram_prePlace.summary" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="Global|VisualStudio|python3" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
