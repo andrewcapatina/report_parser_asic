@@ -103,6 +103,8 @@ def main():
         # Write results to CSV file.
         sp.write_qor_to_csv(top_design, reports)
 
+        sp.write_data_to_text(top_design, reports)
+
     # Checking if user selected Cadence tools.
     if tool_option == ASIC_TOOLS[1]:
         print("Selected cadence tools.")

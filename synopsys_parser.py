@@ -15,6 +15,7 @@ FOLDER_WRITE_PATH = "outputs/"      # Location of the output parsed file.
 
 # Update the below global variables if qor.rpt or clock_qor.rpt
 # file reporting format changes.
+ALIGN_LENGTH = 20   # The largest string to be displayed for reporting. 
 HOLD_VIOLATION_STR = "Worst Hold Violation:"
 TOTAL_HOLD_VIOLATION_STR = 'Total Hold Violation:'
 TOTAL_NEG_SLACK_STR = 'Total Negative Slack:'
@@ -196,4 +197,25 @@ def write_qor_to_csv(top_design, reports):
         for report in reports:
             for row in report:
                 qor_writer.writerow(row)
-    print("Report generated at path: " + file_path)
+    print("CSV file generated at path: " + file_path)
+
+
+def write_data_to_text(top_design, reports):
+    """
+        Function that writes all the report 
+        summaries to a text file.
+
+        input: top_design: string indicating design name.
+        input: reports: list of lists containing report data.
+    """
+    file_path = FOLDER_WRITE_PATH + top_design + '_report_text.txt'
+    with open(file_path, 'w') as txtfile:
+        for report in reports:
+            for row in report:
+                for val in row:
+                    if val is not None:
+                        txtfile.write(val.ljust(ALIGN_LENGTH))
+                    else:
+                        txtfile.write(" ".ljust(ALIGN_LENGTH))
+                txtfile.write('\n')
+    print("text file generated at path: " + file_path)

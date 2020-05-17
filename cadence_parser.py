@@ -104,4 +104,4 @@ def write_data_to_csv(top_design, stages_data):
         writer = csv.writer(csvfile)
         for row in stages_data:
             writer.writerow(row)
-    print("Report generated at path: " + file_path)
+    print("CSV file generated at path: " + file_path)
