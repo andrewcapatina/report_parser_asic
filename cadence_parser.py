@@ -9,6 +9,7 @@
 import csv
 import pandas as pd
 
+ALIGN_LENGTH = 25  # Used for aligning words in text file.
 FOLDER_READ_PATH = "reports/"       # Location of reports to be parsed.
 FOLDER_WRITE_PATH = "outputs/"      # Location of the output parsed file.
 STAGES = ['preCTS', 'postCTS', 'postRoute']  # Stages for flow.
@@ -105,3 +106,23 @@ def write_data_to_csv(top_design, stages_data):
         for row in stages_data:
             writer.writerow(row)
     print("CSV file generated at path: " + file_path)
+
+
+def write_data_to_text(top_design, stages_data):
+    """
+        Function that writes all the report 
+        summaries to a text file.
+
+        input: top_design: string indicating design name.
+        input: reports: list of lists containing report data.
+    """
+    file_path = FOLDER_WRITE_PATH + top_design + '_report_text.txt'
+    with open(file_path, 'w') as txtfile:
+        for stage in stages_data:
+            for val in stage:
+                if val is not None:
+                    txtfile.write(val.ljust(ALIGN_LENGTH))
+                else:
+                    txtfile.write(" ".ljust(ALIGN_LENGTH))
+            txtfile.write('\n')
+    print("text file generated at path: " + file_path)

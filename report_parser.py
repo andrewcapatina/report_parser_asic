@@ -100,9 +100,8 @@ def main():
 
             reports.append(report_qor)
 
-        # Write results to CSV file.
+        # Write results to CSV file and text file.
         sp.write_qor_to_csv(top_design, reports)
-
         sp.write_data_to_text(top_design, reports)
 
     # Checking if user selected Cadence tools.
@@ -134,8 +133,9 @@ def main():
             stage_summary.insert(0, stage)
             stages_data.append(stage_summary)
 
-        # Write results to CSV file.
+        # Write results to CSV file and text file.
         cp.write_data_to_csv(top_design, stages_data)
+        cp.write_data_to_text(top_design, stages_data)
 
 
 if __name__ == "__main__":
