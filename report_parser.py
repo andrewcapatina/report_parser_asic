@@ -21,18 +21,6 @@ FOLDER_WRITE_PATH = "outputs/"      # Location of the output parsed file.
 
 ASIC_TOOLS = ["synopsys", "cadence"]    # Set of tools that generates reports.
 
-def write_data_to_text(top_design, to_write):
-    """
-
-    """
-    file_path = FOLDER_WRITE_PATH + top_design + '_report_text.txt'
-    with open(file_path, 'w') as txtfile:
-        for row in to_write:
-            txtfile.write(row)
-
-
-
-
 def main():
     """
     Runs task of selecting which tool we are
@@ -114,8 +102,6 @@ def main():
 
         # Write results to CSV file.
         sp.write_qor_to_csv(top_design, reports)
-
-        write_data_to_text(top_design, reports)
 
     # Checking if user selected Cadence tools.
     if tool_option == ASIC_TOOLS[1]:
