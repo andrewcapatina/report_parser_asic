@@ -12,7 +12,7 @@ import pandas as pd
 ALIGN_LENGTH = 25  # Used for aligning words in text file.
 FOLDER_READ_PATH = "reports/"       # Location of reports to be parsed.
 FOLDER_WRITE_PATH = "outputs/"      # Location of the output parsed file.
-STAGES = ['preCTS', 'postCTS', 'postRoute']  # Stages for flow.
+STAGES = ['place', 'postcts', 'postcts_hold', 'route', 'route_hold']  # Stages for flow.
 # Columns in a summary timing report. Modify if Cadence changes reporting.
 SUMMARY_COLUMNS = ['Stage', 'reg2reg_WNS/TNS/Vio', 'in2reg_WNS/TNS/Vio',
                    'reg2out_WNS/TNS/Vio', 'in2out_WNS/TNS/Vio']
@@ -30,7 +30,7 @@ def read_file(file_path):
     """
     print(file_path)
     try:
-        with open(file_path) as fp:
+        with open(file_path, 'r') as fp:
             report = fp.readlines()
     except:
         print("File name for the given design was not found.")

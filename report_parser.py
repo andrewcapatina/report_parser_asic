@@ -119,9 +119,12 @@ def main():
         for stage in cp.STAGES:  # Iterate through stages of Cadence flow.
 
             # Create file path and read file.
-            file_path = FOLDER_READ_PATH + top_design + "_" + stage + ".summary"
-            report = cp.read_file(file_path)
+            folder_path = FOLDER_READ_PATH + top_design + ".innovus" + "/"
+            file_name = stage + ".summary"
+            file_path = folder_path + file_name
+
             # Error checking
+            report = cp.read_file(file_path)
             if report == 1:
                 return
 

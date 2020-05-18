@@ -1,4 +1,6 @@
 Stage,reg2reg_WNS/TNS/Vio,in2reg_WNS/TNS/Vio,reg2out_WNS/TNS/Vio,in2out_WNS/TNS/Vio
-preCTS,0.877/0.000/0/,-27.055/-3673.6/148/,-0.045/-0.045/1/,N/A/N/A/N/A/
-postCTS,0.877/0.000/0/,-27.055/-3673.6/148/,-0.045/-0.045/1/,N/A/N/A/N/A/
-postRoute,0.877/0.000/0/,-27.055/-3673.6/148/,-0.045/-0.045/1/,N/A/N/A/N/A/
+place,1.191/0.000/0/,1.178/0.000/0/,N/A/N/A/N/A/,N/A/N/A/N/A/
+postcts,1.914/0.000/0/,1.854/0.000/0/,N/A/N/A/N/A/,N/A/N/A/N/A/
+postcts_hold,0.789/0.000/0/,0.251/0.000/0/,N/A/N/A/N/A/,N/A/N/A/N/A/
+route,1.869/0.000/0/,1.814/0.000/0/,N/A/N/A/N/A/,N/A/N/A/N/A/
+route_hold,0.786/0.000/0/,0.258/0.000/0/,N/A/N/A/N/A/,N/A/N/A/N/A/
