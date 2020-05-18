@@ -31,11 +31,8 @@ def read_file(file_path):
     """
     print(file_path)
     try:
-        #with open(file_path, 'r') as fp:
-            #report = fp.readlines()
         with gz.open(file_path + ".gz", 'r') as gp:
             report_temp = gp.readlines()
-
     except:
         print("File name for the given design was not found.")
         return 1
