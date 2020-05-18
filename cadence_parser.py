@@ -7,6 +7,7 @@
         data to be printed.
 """
 import csv
+import gzip as gz
 import pandas as pd
 
 ALIGN_LENGTH = 25  # Used for aligning words in text file.
@@ -30,11 +31,19 @@ def read_file(file_path):
     """
     print(file_path)
     try:
-        with open(file_path, 'r') as fp:
-            report = fp.readlines()
+        #with open(file_path, 'r') as fp:
+            #report = fp.readlines()
+        with gz.open(file_path + ".gz", 'r') as gp:
+            report_temp = gp.readlines()
+
     except:
         print("File name for the given design was not found.")
         return 1
+
+    report = []
+    for row in report_temp:
+        row = row.decode('utf-8')
+        report.append(row)
 
     return report
 
