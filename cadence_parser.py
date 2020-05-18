@@ -37,6 +37,7 @@ def read_file(file_path):
         print("File name for the given design was not found.")
         return 1
 
+    # Converts bytes object to string. 
     report = []
     for row in report_temp:
         row = row.decode('utf-8')
