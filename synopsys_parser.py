@@ -205,6 +205,8 @@ def write_data_to_text(top_design, reports):
         Function that writes all the report 
         summaries to a text file.
 
+        https://stackoverflow.com/questions/16796709/align-columns-in-a-text-file
+
         input: top_design: string indicating design name.
         input: reports: list of lists containing report data.
     """
