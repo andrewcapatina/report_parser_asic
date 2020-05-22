@@ -83,9 +83,8 @@ def main():
             # Prepend labels to data, and transpose the list so
             # data remains in proper order.
             clock_qor.insert(0, sp.COLUMN_LABELS_CLOCK_QOR)
-            clock_qor = pd.DataFrame(clock_qor)
-            clock_qor = clock_qor.transpose()
-            clock_qor = clock_qor.values.tolist()
+
+            clock_qor = sp.transpose_data(clock_qor)    # transpose data for viewability.
 
             # Combine all the data together.
             report_qor = [current_stage, timing_paths, wns_times, tns_times,

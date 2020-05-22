@@ -183,6 +183,16 @@ def read_file(file_path):
     return qor_report
 
 
+def transpose_data(clock_qor):
+    """
+        Function to take input and transpose it.
+
+    """
+    clock_qor = pd.DataFrame(clock_qor)
+    clock_qor = clock_qor.transpose()
+    clock_qor = clock_qor.values.tolist()
+    return clock_qor
+
 def write_qor_to_csv(top_design, reports):
     """
         Function to write results from all
