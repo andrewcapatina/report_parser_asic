@@ -1,0 +1,144 @@
+****************************************
+Report : qor
+Design : ORCA_TOP
+Version: P-2019.03-SP1-VAL
+Date   : Wed Apr 22 21:42:23 2020
+****************************************
+Information: The stitching and editing of coupling caps is turned ON for design 'ORCA_TOP_lib:ORCA_TOP.design'. (TIM-125)
+Information: Design ORCA_TOP has 49785 nets, 0 global routed, 1279 detail routed. (NEX-024)
+Information: The RC mode used is CTO for design 'ORCA_TOP'. (NEX-022)
+Information: Crosstalk analysis has been disabled. (TIM-114)
+Information: Design Average RC for design ORCA_TOP  (NEX-011)
+Information: r = 1.785714 ohm/um, via_r = 0.500000 ohm/cut, c = 0.093644 ff/um, cc = 0.000000 ff/um (X dir) (NEX-017)
+Information: r = 1.785715 ohm/um, via_r = 0.500000 ohm/cut, c = 0.115168 ff/um, cc = 0.000000 ff/um (Y dir) (NEX-017)
+Information: Update timing completed net estimation for all the timing graph nets (TIM-111)
+Information: Net estimation statistics: timing graph nets = 49782, routed nets = 1279, across physical hierarchy nets = 0, parasitics cached nets = 49782, delay annotated nets = 0, parasitics annotated nets = 0, multi-voltage nets = 674. (TIM-112)
+Information: Timer using 'SI, Timing Window Analysis, CRPR'. (TIM-050)
+
+
+Scenario           'func_slow'
+Timing Path Group  'PCI_CLK'
+----------------------------------------
+Levels of Logic:                     34
+Critical Path Length:              7.07
+Critical Path Slack:              -0.04
+Critical Path Clk Period:          7.50
+Total Negative Slack:             -0.07
+No. of Violating Paths:               3
+Worst Hold Violation:              0.00
+Total Hold Violation:              0.00
+No. of Hold Violations:               0
+----------------------------------------
+
+Scenario           'func_slow'
+Timing Path Group  'v_PCI_CLK'
+----------------------------------------
+Levels of Logic:                      2
+Critical Path Length:              1.64
+Critical Path Slack:               0.52
+Critical Path Clk Period:          7.50
+Total Negative Slack:              0.00
+No. of Violating Paths:               0
+Worst Hold Violation:              0.00
+Total Hold Violation:              0.00
+No. of Hold Violations:               0
+----------------------------------------
+
+Scenario           'func_slow'
+Timing Path Group  'SYS_2x_CLK'
+----------------------------------------
+Levels of Logic:                      7
+Critical Path Length:              2.29
+Critical Path Slack:              -0.24
+Critical Path Clk Period:          2.40
+Total Negative Slack:             -2.38
+No. of Violating Paths:              23
+Worst Hold Violation:              0.00
+Total Hold Violation:              0.00
+No. of Hold Violations:               0
+----------------------------------------
+
+Scenario           'func_slow'
+Timing Path Group  'SYS_CLK'
+----------------------------------------
+Levels of Logic:                      4
+Critical Path Length:              3.79
+Critical Path Slack:              -1.56
+Critical Path Clk Period:          4.80
+Total Negative Slack:            -78.10
+No. of Violating Paths:             209
+Worst Hold Violation:              0.00
+Total Hold Violation:              0.00
+No. of Hold Violations:               0
+----------------------------------------
+
+Scenario           'func_slow'
+Timing Path Group  'SDRAM_CLK'
+----------------------------------------
+Levels of Logic:                      0
+Critical Path Length:              0.50
+Critical Path Slack:              -0.24
+Critical Path Clk Period:          4.10
+Total Negative Slack:             -2.80
+No. of Violating Paths:              36
+Worst Hold Violation:             -2.79
+Total Hold Violation:           -161.57
+No. of Hold Violations:              64
+----------------------------------------
+
+Scenario           'func_slow'
+Timing Path Group  'SD_DDR_CLK'
+----------------------------------------
+Levels of Logic:                      3
+Critical Path Length:              0.99
+Critical Path Slack:              -2.82
+Critical Path Clk Period:          4.10
+Total Negative Slack:           -108.91
+No. of Violating Paths:              78
+Worst Hold Violation:              0.00
+Total Hold Violation:              0.00
+No. of Hold Violations:               0
+----------------------------------------
+
+
+Cell Count
+----------------------------------------
+Hierarchical Cell Count:             31
+Hierarchical Port Count:           2651
+Leaf Cell Count:                  46514
+Buf/Inv Cell Count:                9535
+Buf Cell Count:                    3351
+Inv Cell Count:                    6184
+CT Buf/Inv Cell Count:                0
+Combinational Cell Count:         41367
+Sequential Cell Count:             5147
+Macro Count:                         40
+----------------------------------------
+
+
+Area
+----------------------------------------
+Combinational Area:           105367.09
+Noncombinational Area:         45748.46
+Buf/Inv Area:                  20854.80
+Total Buffer Area:             10094.85
+Total Inverter Area:           10759.95
+Macro/Black Box Area:         231744.78
+Net Area:                             0
+Net XLength:                       0.00
+Net YLength:                       0.00
+----------------------------------------
+Cell Area (netlist):                         382860.33
+Cell Area (netlist and physical only):       389122.44
+Net Length:                        0.00
+
+
+Design Rules
+----------------------------------------
+Total Number of Nets:             50222
+Nets with Violations:               515
+Max Trans Violations:               134
+Max Cap Violations:                 472
+----------------------------------------
+
+1

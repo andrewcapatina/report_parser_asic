@@ -51,7 +51,7 @@ def main():
 
             # Create file path and read the file.
             to_open = top_design + "." + stage + ".qor.rpt"
-            qor_report = sp.read_file(to_open)
+            qor_report = sp.read_file_syn(to_open)
             # Error checking
             if qor_report == 1:
                 return
@@ -66,7 +66,7 @@ def main():
             # Read clock_qor report.
             to_open = top_design + "." + stage + ".clock_qor.rpt"
             print("Parsing file " + to_open)
-            clock_qor = sp.read_file(to_open)
+            clock_qor = sp.read_file_syn(to_open)
 
             # Parse and format the clock_qor report.
             clock_qor = sp.parse_clock_qor(clock_qor)
@@ -100,8 +100,66 @@ def main():
             reports.append(report_qor)
 
         # Write results to CSV file and text file.
-        sp.write_qor_to_csv(top_design, reports)
-        sp.write_data_to_text(top_design, reports)
+        sp.write_qor_to_csv(top_design, reports, "syn")
+        sp.write_data_to_text(top_design, reports, "syn")
+
+        reports = []
+        # Iterate through all stages of synopsys flow.
+        for stage in sp.STAGES:
+
+            # Create file path and read the file.
+            to_open = top_design + "." + stage + ".qor.rpt"
+            qor_report = sp.read_file_apr(to_open)
+            # Error checking
+            if qor_report == 1:
+                return
+
+            # Get all important values from qor report.
+            timing_paths = sp.get_timing_paths(qor_report)
+            wns_times = sp.get_wns(qor_report)
+            tns_times = sp.get_tns(qor_report)
+            worst_hold_vio = sp.get_worst_hold_violation(qor_report)
+            hold_times = sp.get_hold_times(qor_report)
+
+            # Read clock_qor report.
+            to_open = top_design + "." + stage + ".clock_qor.rpt"
+            print("Parsing file " + to_open)
+            clock_qor = sp.read_file_apr(to_open)
+
+            # Parse and format the clock_qor report.
+            clock_qor = sp.parse_clock_qor(clock_qor)
+            clock_qor = sp.format_clock_qor_data(clock_qor, timing_paths)
+
+            # Prepend labels to data.
+            current_stage = ["Stage: " + stage]
+            timing_paths.insert(0, " ")
+            wns_times.insert(0, "WNS Setup")
+            tns_times.insert(0, "TNS Setup")
+            worst_hold_vio.insert(0, "WNS Hold")
+            hold_times.insert(0, "TNS Hold")
+
+            # Prepend labels to data, and transpose the list so
+            # data remains in proper order.
+            clock_qor.insert(0, sp.COLUMN_LABELS_CLOCK_QOR)
+
+            clock_qor = sp.transpose_data(clock_qor)    # transpose data for viewability.
+
+            # Combine all the data together.
+            report_qor = [current_stage, timing_paths, wns_times, tns_times,
+                          worst_hold_vio, hold_times]
+            for row in clock_qor:
+                report_qor.append(row)
+
+            # Transpose the data for viewability.
+            report_qor = pd.DataFrame(report_qor)
+            report_qor = report_qor.transpose()
+            report_qor = report_qor.values.tolist()
+
+            reports.append(report_qor)
+
+        # Write results to CSV file and text file.
+        sp.write_qor_to_csv(top_design, reports, "apr")
+        sp.write_data_to_text(top_design, reports, "apr")
 
     # Checking if user selected Cadence tools.
     if tool_option == ASIC_TOOLS[1]:

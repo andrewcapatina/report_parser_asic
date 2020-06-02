@@ -1,0 +1,135 @@
+****************************************
+Report : qor
+Design : ORCA_TOP
+Version: P-2019.03-SP1-VAL
+Date   : Wed Apr 22 13:25:30 2020
+****************************************
+Information: Timer using 'SI, Timing Window Analysis, CRPR'. (TIM-050)
+
+
+Scenario           'func_slow'
+Timing Path Group  'PCI_CLK'
+----------------------------------------
+Levels of Logic:                     34
+Critical Path Length:              7.12
+Critical Path Slack:              -0.05
+Critical Path Clk Period:          7.50
+Total Negative Slack:             -0.26
+No. of Violating Paths:               9
+Worst Hold Violation:              0.00
+Total Hold Violation:              0.00
+No. of Hold Violations:               0
+----------------------------------------
+
+Scenario           'func_slow'
+Timing Path Group  'v_PCI_CLK'
+----------------------------------------
+Levels of Logic:                      2
+Critical Path Length:              1.73
+Critical Path Slack:               3.17
+Critical Path Clk Period:          7.50
+Total Negative Slack:              0.00
+No. of Violating Paths:               0
+Worst Hold Violation:             -0.21
+Total Hold Violation:             -4.67
+No. of Hold Violations:              31
+----------------------------------------
+
+Scenario           'func_slow'
+Timing Path Group  'SYS_2x_CLK'
+----------------------------------------
+Levels of Logic:                      7
+Critical Path Length:              2.27
+Critical Path Slack:              -0.04
+Critical Path Clk Period:          2.40
+Total Negative Slack:             -0.04
+No. of Violating Paths:               1
+Worst Hold Violation:              0.00
+Total Hold Violation:              0.00
+No. of Hold Violations:               0
+----------------------------------------
+
+Scenario           'func_slow'
+Timing Path Group  'SYS_CLK'
+----------------------------------------
+Levels of Logic:                     43
+Critical Path Length:              5.24
+Critical Path Slack:              -0.72
+Critical Path Clk Period:          4.80
+Total Negative Slack:            -73.81
+No. of Violating Paths:             193
+Worst Hold Violation:              0.00
+Total Hold Violation:              0.00
+No. of Hold Violations:               0
+----------------------------------------
+
+Scenario           'func_slow'
+Timing Path Group  'SDRAM_CLK'
+----------------------------------------
+Levels of Logic:                      0
+Critical Path Length:              0.54
+Critical Path Slack:              -0.13
+Critical Path Clk Period:          4.10
+Total Negative Slack:             -0.97
+No. of Violating Paths:              22
+Worst Hold Violation:              0.00
+Total Hold Violation:              0.00
+No. of Hold Violations:               0
+----------------------------------------
+
+Scenario           'func_slow'
+Timing Path Group  'SD_DDR_CLK'
+----------------------------------------
+Levels of Logic:                      2
+Critical Path Length:              0.73
+Critical Path Slack:              -0.15
+Critical Path Clk Period:          4.10
+Total Negative Slack:             -4.54
+No. of Violating Paths:              32
+Worst Hold Violation:              0.00
+Total Hold Violation:              0.00
+No. of Hold Violations:               0
+----------------------------------------
+
+
+Cell Count
+----------------------------------------
+Hierarchical Cell Count:             31
+Hierarchical Port Count:           1986
+Leaf Cell Count:                  45263
+Buf/Inv Cell Count:                8284
+Buf Cell Count:                    3072
+Inv Cell Count:                    5212
+CT Buf/Inv Cell Count:                0
+Combinational Cell Count:         40116
+Sequential Cell Count:             5147
+Macro Count:                         40
+----------------------------------------
+
+
+Area
+----------------------------------------
+Combinational Area:           101805.77
+Noncombinational Area:         45774.64
+Buf/Inv Area:                  17293.48
+Total Buffer Area:              9322.00
+Total Inverter Area:            7971.48
+Macro/Black Box Area:         231744.78
+Net Area:                             0
+Net XLength:                       0.00
+Net YLength:                       0.00
+----------------------------------------
+Cell Area (netlist):                         379325.19
+Cell Area (netlist and physical only):       385587.29
+Net Length:                        0.00
+
+
+Design Rules
+----------------------------------------
+Total Number of Nets:             48964
+Nets with Violations:               423
+Max Trans Violations:                69
+Max Cap Violations:                 423
+----------------------------------------
+
+1

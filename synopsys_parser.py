@@ -11,7 +11,10 @@ import csv
 import time
 
 FOLDER_READ_PATH = "reports/"       # Location of reports to be parsed.
+FOLDER_READ_PATH_SYN = "reports/syn/reports/" # Location of reports from synthesis.
+FOLDER_READ_PATH_APR = "reports/apr/reports/" # Location of reports from place and route. 
 FOLDER_WRITE_PATH = "outputs/"      # Location of the output parsed file.
+
 
 # Update the below global variables if qor.rpt or clock_qor.rpt
 # file reporting format changes.
@@ -23,6 +26,7 @@ WNS_STR = 'Critical Path Slack:'
 
 # Variable for different stages in the ASIC design flow.
 STAGES = ['synth', 'place', 'cts', 'post-cts', 'route', 'pt']
+#STAGES = ['place2', 'postcts2', 'route2']
 
 # Labels used for columns of clock_qor report.
 COLUMN_LABELS_CLOCK_QOR = ['Sinks', 'Levels', 'Clock Repeater Count',
@@ -166,18 +170,37 @@ def parse_clock_qor(qor_report):
     return clock_qor
 
 
-def read_file(file_path):
+def read_file_apr(file_path):
     """
         Function to read file and return the whole file.
         input: file_path - file path to qor files.
         output: qor_report - file contents returned.
     """
     print(file_path)
+    file_path = FOLDER_READ_PATH_APR + file_path
     try:
-        with open(FOLDER_READ_PATH + file_path) as fp:
+        with open(file_path) as fp:
             qor_report = fp.readlines()
     except:
-        print("File name for the given design was not found.")
+        print("file path: " + file_path + " not found.")
+        return 1
+
+    return qor_report
+
+
+def read_file_syn(file_path):
+    """
+        Function to read file and return the whole file.
+        input: file_path - file path to qor files.
+        output: qor_report - file contents returned.
+    """
+    print(file_path)
+    file_path = FOLDER_READ_PATH_SYN + file_path
+    try:
+        with open(file_path) as fp:
+            qor_report = fp.readlines()
+    except:
+        print("file path: " + file_path + " not found.")
         return 1
 
     return qor_report
@@ -193,15 +216,18 @@ def transpose_data(clock_qor):
     clock_qor = clock_qor.values.tolist()
     return clock_qor
 
-def write_qor_to_csv(top_design, reports):
+def write_qor_to_csv(top_design, reports, syn_or_apr):
     """
         Function to write results from all
         stages to a CSV file.
 
         input: top_design: string containing design name.
         input: reports: list containing data to be printed.
+        input: syn_or_apr: string either containing "apr" or "syn" for 
+            the /apr and /syn reports folders.
     """
-    file_path = FOLDER_WRITE_PATH + top_design + '_reports_parsed.csv'
+    file_path = FOLDER_WRITE_PATH + top_design + '_' + syn_or_apr \
+       + '_reports_parsed.csv'
     with open(file_path, 'w') as csvfile:
         qor_writer = csv.writer(csvfile)
         for report in reports:
@@ -210,7 +236,7 @@ def write_qor_to_csv(top_design, reports):
     print("CSV file generated at path: " + file_path)
 
 
-def write_data_to_text(top_design, reports):
+def write_data_to_text(top_design, reports, syn_or_apr):
     """
         Function that writes all the report 
         summaries to a text file.
@@ -219,8 +245,11 @@ def write_data_to_text(top_design, reports):
 
         input: top_design: string indicating design name.
         input: reports: list of lists containing report data.
+        input: syn_or_apr: string either containing "apr" or "syn" for 
+            the /apr and /syn reports folders.
     """
-    file_path = FOLDER_WRITE_PATH + top_design + '_report_text.txt'
+    file_path = FOLDER_WRITE_PATH + top_design + '_' + syn_or_apr \
+        + '_report_text.txt'
     with open(file_path, 'w') as txtfile:
         for report in reports:
             for row in report:
