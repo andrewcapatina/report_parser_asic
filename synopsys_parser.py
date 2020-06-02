@@ -176,7 +176,6 @@ def read_file_apr(file_path):
         input: file_path - file path to qor files.
         output: qor_report - file contents returned.
     """
-    print(file_path)
     file_path = FOLDER_READ_PATH_APR + file_path
     try:
         with open(file_path) as fp:
@@ -194,7 +193,6 @@ def read_file_syn(file_path):
         input: file_path - file path to qor files.
         output: qor_report - file contents returned.
     """
-    print(file_path)
     file_path = FOLDER_READ_PATH_SYN + file_path
     try:
         with open(file_path) as fp:
