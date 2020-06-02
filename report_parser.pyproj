@@ -35,6 +35,7 @@
     <Folder Include="reports\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="outputs\README.txt" />
     <Content Include="reports\fifo1_sram_postCTS.summary" />
     <Content Include="reports\fifo1_sram_postRoute.summary" />
     <Content Include="reports\fifo1_sram_preCTS.summary" />
