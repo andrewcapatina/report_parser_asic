@@ -45,7 +45,8 @@ def main():
             top_design = input("Please enter the design name\n")
 
 
-        reports = []
+        qor_reports = []
+        clock_qor_reports = []
         # Iterate through all stages of synopsys flow.
         for stage in sp.STAGES:
 
@@ -57,11 +58,13 @@ def main():
                 return
 
             # Get all important values from qor report.
-            timing_paths = sp.get_timing_paths(qor_report)
-            wns_times = sp.get_wns(qor_report)
-            tns_times = sp.get_tns(qor_report)
-            worst_hold_vio = sp.get_worst_hold_violation(qor_report)
-            hold_times = sp.get_hold_times(qor_report)
+            qor_report = sp.get_qor_data(qor_report)
+
+            # Make the data viewable.
+            qor_report = sp.format_qor_data(qor_report, stage)
+
+            # Add report for this stage in a list saved.
+            qor_reports.append(qor_report)
 
             # Read clock_qor report.
             to_open = top_design + "." + stage + ".clock_qor.rpt"
@@ -69,41 +72,21 @@ def main():
             clock_qor = sp.read_file_syn(to_open)
 
             # Parse and format the clock_qor report.
-            clock_qor = sp.parse_clock_qor(clock_qor)
-            clock_qor = sp.format_clock_qor_data(clock_qor, timing_paths)
+            clock_qor = sp.parse_clock_qor(clock_qor, stage)
 
-            # Prepend labels to data.
-            current_stage = ["Stage: " + stage]
-            timing_paths.insert(0, " ")
-            wns_times.insert(0, "WNS Setup")
-            tns_times.insert(0, "TNS Setup")
-            worst_hold_vio.insert(0, "WNS Hold")
-            hold_times.insert(0, "TNS Hold")
+            # Add report for this stage to the list of reports. 
+            clock_qor_reports.append(clock_qor)
 
-            # Prepend labels to data, and transpose the list so
-            # data remains in proper order.
-            clock_qor.insert(0, sp.COLUMN_LABELS_CLOCK_QOR)
-
-            clock_qor = sp.transpose_data(clock_qor)    # transpose data for viewability.
-
-            # Combine all the data together.
-            report_qor = [current_stage, timing_paths, wns_times, tns_times,
-                          worst_hold_vio, hold_times]
-            for row in clock_qor:
-                report_qor.append(row)
-
-            # Transpose the data for viewability.
-            report_qor = pd.DataFrame(report_qor)
-            report_qor = report_qor.transpose()
-            report_qor = report_qor.values.tolist()
-
-            reports.append(report_qor)
 
         # Write results to CSV file and text file.
-        sp.write_qor_to_csv(top_design, reports, "syn")
-        sp.write_data_to_text(top_design, reports, "syn")
+        sp.write_qor_to_csv(top_design, qor_reports, "qor", "syn")
+        sp.write_data_to_text(top_design, qor_reports, "qor", "syn")
 
-        reports = []
+        sp.write_qor_to_csv(top_design, clock_qor_reports, "clock_qor", "syn")
+        sp.write_data_to_text(top_design, clock_qor_reports, "clock_qor", "syn")
+
+        qor_reports = []
+        clock_qor_reports = []
         # Iterate through all stages of synopsys flow.
         for stage in sp.STAGES:
 
@@ -115,11 +98,13 @@ def main():
                 return
 
             # Get all important values from qor report.
-            timing_paths = sp.get_timing_paths(qor_report)
-            wns_times = sp.get_wns(qor_report)
-            tns_times = sp.get_tns(qor_report)
-            worst_hold_vio = sp.get_worst_hold_violation(qor_report)
-            hold_times = sp.get_hold_times(qor_report)
+            qor_report = sp.get_qor_data(qor_report)
+
+            # Make the data viewable.
+            qor_report = sp.format_qor_data(qor_report, stage)
+
+            # Add report for this stage in a list saved.
+            qor_reports.append(qor_report)
 
             # Read clock_qor report.
             to_open = top_design + "." + stage + ".clock_qor.rpt"
@@ -127,39 +112,21 @@ def main():
             clock_qor = sp.read_file_apr(to_open)
 
             # Parse and format the clock_qor report.
-            clock_qor = sp.parse_clock_qor(clock_qor)
-            clock_qor = sp.format_clock_qor_data(clock_qor, timing_paths)
+            clock_qor = sp.parse_clock_qor(clock_qor, stage)
 
-            # Prepend labels to data.
-            current_stage = ["Stage: " + stage]
-            timing_paths.insert(0, " ")
-            wns_times.insert(0, "WNS Setup")
-            tns_times.insert(0, "TNS Setup")
-            worst_hold_vio.insert(0, "WNS Hold")
-            hold_times.insert(0, "TNS Hold")
+            # Add report for this stage to the list of reports. 
+            clock_qor_reports.append(clock_qor)
 
-            # Prepend labels to data, and transpose the list so
-            # data remains in proper order.
-            clock_qor.insert(0, sp.COLUMN_LABELS_CLOCK_QOR)
-
-            clock_qor = sp.transpose_data(clock_qor)    # transpose data for viewability.
-
-            # Combine all the data together.
-            report_qor = [current_stage, timing_paths, wns_times, tns_times,
-                          worst_hold_vio, hold_times]
-            for row in clock_qor:
-                report_qor.append(row)
-
-            # Transpose the data for viewability.
-            report_qor = pd.DataFrame(report_qor)
-            report_qor = report_qor.transpose()
-            report_qor = report_qor.values.tolist()
-
-            reports.append(report_qor)
 
         # Write results to CSV file and text file.
-        sp.write_qor_to_csv(top_design, reports, "apr")
-        sp.write_data_to_text(top_design, reports, "apr")
+        sp.write_qor_to_csv(top_design, qor_reports, "qor", "apr")
+        sp.write_data_to_text(top_design, qor_reports, "qor", "apr")
+
+        sp.write_qor_to_csv(top_design, clock_qor_reports, "clock_qor", "apr")
+        sp.write_data_to_text(top_design, clock_qor_reports, "clock_qor", "apr")
+
+
+
 
     # Checking if user selected Cadence tools.
     if tool_option == ASIC_TOOLS[1]:

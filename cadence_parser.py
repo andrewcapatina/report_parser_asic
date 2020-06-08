@@ -29,7 +29,6 @@ def read_file(file_path):
         input: file_path - file path to qor files.
         output: report - file contents returned.
     """
-    print(file_path)
     try:
         with gz.open(file_path + ".gz", 'r') as gp:
             report_temp = gp.readlines()

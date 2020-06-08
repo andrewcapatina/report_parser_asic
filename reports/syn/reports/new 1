@@ -1,0 +1,44 @@
+floorplan slide:
+
+This is our layout shown with the different power domains. This is the first floorplan option and in our 
+report we compare the setup times. This floorplan had better timing than our second option.
+
+Place and Route:
+
+Here is our layout with routes shown. All looks well however for some reason the supply nets from VDD
+ports are not routed. We compared this to fifo design and VDD wasn't routed as well. We can use the get_net
+command to get the supply nets, but for some reason they just aren't present in the layout. 
+
+Level Shifter Presence:
+
+Here are the level shifters. One thing i noticed was DC shell reported 4 level shifters, and in ICC2 I only
+see 3 level shifters. I am unsure how one level shifter is missing. I don't think ICC2 would optimize this.
+
+
+Isolation Cell Presence:
+
+Here are the ISOs shown for both DC and ICC2. I also noticed here that we had 18 ISOs in DC, but 16
+are only present in the layout.
+
+Power Switch Presence:
+	
+Here are the power switches shown in DC and ICC2. I can use get_nets command to confirm the supply network 
+structure as seen in the DC UPF diagram. however, for some reason the nets aren't physically implemented.
+ICC2 recognizes the nets, but they are not physically implemented.
+
+
+QuestaSim Verification:
+
+I ran the simulation in power aware mode meaning that power intent is applied to the design.
+So the simulation is able to read the UPF file and is able to model the power management system in siimulation.
+
+To test the design I tested the outputs of the isolation cells. My first test was to set the isolation cells.
+Second test was to observe X propagation when the isolation enable is not active. 
+
+As shown by the waveforms, I am able to observe the isolation cell output being set. And I am also able to see
+the X propagation. 
+
+(Why do I need to observe X propagation?)
+
+
+Logic Equivalence Checker
