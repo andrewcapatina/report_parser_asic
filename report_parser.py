@@ -47,43 +47,48 @@ def main():
 
         qor_reports = []
         clock_qor_reports = []
-        # Iterate through all stages of synopsys flow.
-        for stage in sp.STAGES:
+        # Only one stage in flow for DC shell. (/syn/reports/)
+        stage = "dc"
 
-            # Create file path and read the file.
-            to_open = top_design + "." + stage + ".qor.rpt"
-            qor_report = sp.read_file_syn(to_open)
-            # Error checking
-            if qor_report == 1:
-                return
+        # Create file path and read the file.
+        to_open = top_design + "." + stage + ".qor.rpt"
+        qor_report = sp.read_file_syn(to_open)
+        # Error checking
+        if qor_report == 1:
+            return
 
-            # Get all important values from qor report.
-            qor_report = sp.get_qor_data(qor_report)
+        # Get all important values from qor report.
+        qor_report = sp.get_qor_data(qor_report)
 
-            # Make the data viewable.
-            qor_report = sp.format_qor_data(qor_report, stage)
+        # Make the data viewable.
+        qor_report = sp.format_qor_data(qor_report, stage)
 
-            # Add report for this stage in a list saved.
-            qor_reports.append(qor_report)
+        # Read clock_qor report.
+        to_open = top_design + "." + stage + ".clock_qor.rpt"
+        clock_qor = sp.read_file_syn(to_open)
 
-            # Read clock_qor report.
-            to_open = top_design + "." + stage + ".clock_qor.rpt"
-            print("Parsing file " + to_open)
-            clock_qor = sp.read_file_syn(to_open)
+        # Parse and format the clock_qor report.
+        clock_qor = sp.parse_clock_qor(clock_qor, stage)
 
-            # Parse and format the clock_qor report.
-            clock_qor = sp.parse_clock_qor(clock_qor, stage)
+        # Add report for this stage to the list of reports. 
+        clock_qor_reports.append(clock_qor)
 
-            # Add report for this stage to the list of reports. 
-            clock_qor_reports.append(clock_qor)
+        qor_report.insert(0, ["Flow:", "syn"])
+        clock_qor.insert(0, [["Flow:", "syn"]])
 
+        qor_reports = []
+        for row in qor_report:
+            qor_reports.append([row])
+
+        syn_qor = qor_reports
+        syn_clock_qor = clock_qor
 
         # Write results to CSV file and text file.
-        sp.write_qor_to_csv(top_design, qor_reports, "qor", "syn")
-        sp.write_data_to_text(top_design, qor_reports, "qor", "syn")
+#        sp.write_qor_to_csv(top_design, qor_reports, "qor", "syn")
+#        sp.write_data_to_text(top_design, qor_reports, "qor", "syn")
 
-        sp.write_qor_to_csv(top_design, clock_qor_reports, "clock_qor", "syn")
-        sp.write_data_to_text(top_design, clock_qor_reports, "clock_qor", "syn")
+#        sp.write_qor_to_csv(top_design, clock_qor_reports, "clock_qor", "syn")
+#        sp.write_data_to_text(top_design, clock_qor_reports, "clock_qor", "syn")
 
         qor_reports = []
         clock_qor_reports = []
@@ -108,7 +113,6 @@ def main():
 
             # Read clock_qor report.
             to_open = top_design + "." + stage + ".clock_qor.rpt"
-            print("Parsing file " + to_open)
             clock_qor = sp.read_file_apr(to_open)
 
             # Parse and format the clock_qor report.
@@ -117,15 +121,21 @@ def main():
             # Add report for this stage to the list of reports. 
             clock_qor_reports.append(clock_qor)
 
+        qor_reports.insert(0, [["Flow:", "apr"]])
+        clock_qor_reports.insert(0, [["Flow:", "apr"]])
+
+        for row in qor_reports:
+            syn_qor.append(row)
+        for row in clock_qor_reports:
+            syn_clock_qor.append(row)
+
 
         # Write results to CSV file and text file.
-        sp.write_qor_to_csv(top_design, qor_reports, "qor", "apr")
-        sp.write_data_to_text(top_design, qor_reports, "qor", "apr")
+        sp.write_qor_to_csv(top_design, syn_qor, "qor")
+        sp.write_data_to_text(top_design, syn_qor, "qor")
 
-        sp.write_qor_to_csv(top_design, clock_qor_reports, "clock_qor", "apr")
-        sp.write_data_to_text(top_design, clock_qor_reports, "clock_qor", "apr")
-
-
+        sp.write_qor_to_csv(top_design, syn_clock_qor, "clock_qor")
+        sp.write_data_to_text(top_design, syn_clock_qor, "clock_qor")
 
 
     # Checking if user selected Cadence tools.

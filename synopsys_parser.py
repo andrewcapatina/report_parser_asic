@@ -94,7 +94,6 @@ def get_qor_data(qor_report):
                 for k in range(2,12):
                     rtn = qor_report[i+k].find(WNS_STR)
                     if rtn != -1:
-                        print(qor_report[i+k])
                         qor_report_temp.append(qor_report[i+k])
                     rtn = qor_report[i+k].find(TOTAL_NEG_SLACK_STR)
                     if rtn != -1:
@@ -127,18 +126,18 @@ def parse_clock_qor(qor_report, stage):
     """
     i = 0
     clock_qor = []
-    clock_qor.append(['Stage:', stage])
+    clock_qor.append([['Stage:', stage]])
     for line in qor_report:
         rtn = line.find("Summary Reporting for Corner")
         if rtn != -1:
             k = 0
-            clock_qor.append([line])
-            clock_qor.append(['Clock Group', 'Attrs','Sinks','Levels','Clock Repeater Count',
+            clock_qor.append([[line]])
+            clock_qor.append([['Clock Group', 'Attrs','Sinks','Levels','Clock Repeater Count',
                     'Clock Repeater Area', 'Clock Stdcell Area', 'Max Latency',
-                    'Global Skew', 'Trans DRC Count', 'Cap DRC Count'])
+                    'Global Skew', 'Trans DRC Count', 'Cap DRC Count']])
             while qor_report[i + k].find('All Clocks') == -1:
                 if qor_report[i + k].find('###') != -1:
-                    clock_qor.append([qor_report[i+k]])
+                    clock_qor.append([[qor_report[i+k]]])
                 if qor_report[i + k].find('CLK') != -1:
                     clock_qor.append([qor_report[i+k].split()])
                 if qor_report[i + k].find('clk') != -1:
@@ -195,7 +194,7 @@ def transpose_data(clock_qor):
     clock_qor = clock_qor.values.tolist()
     return clock_qor
 
-def write_qor_to_csv(top_design, reports, file_type, syn_or_apr):
+def write_qor_to_csv(top_design, reports, file_type):
     """
         Function to write results from all
         stages to a CSV file.
@@ -207,7 +206,7 @@ def write_qor_to_csv(top_design, reports, file_type, syn_or_apr):
             the /apr and /syn reports folders.
     """
     file_path = FOLDER_WRITE_PATH + top_design + '_' + file_type  \
-        + '_' + syn_or_apr + '_reports_parsed.csv'
+        + '_' + '_reports_parsed.csv'
     with open(file_path, 'w') as csvfile:
         qor_writer = csv.writer(csvfile)
         for report in reports:
@@ -219,7 +218,7 @@ def write_qor_to_csv(top_design, reports, file_type, syn_or_apr):
     print("CSV file generated at path: " + file_path)
 
 
-def write_data_to_text(top_design, reports, file_type, syn_or_apr):
+def write_data_to_text(top_design, reports, file_type):
     """
         Function that writes all the report 
         summaries to a text file.
@@ -233,17 +232,17 @@ def write_data_to_text(top_design, reports, file_type, syn_or_apr):
             the /apr and /syn reports folders.
     """
     file_path = FOLDER_WRITE_PATH + top_design + '_' + file_type \
-        + '_' + syn_or_apr + '_report_text.txt'
+        + '_' + '_report_text.txt'
     with open(file_path, 'w') as txtfile:
         for stage in reports:
             for row in stage:
                 if row is not None:
                     for val in row:
-                        if type(val) is list:
+                        if type(val) is str:
+                            txtfile.write(val.ljust(ALIGN_LENGTH))
+                        elif type(val) is list:
                             for element in val:
                                 txtfile.write(element.ljust(ALIGN_LENGTH))
-                        elif val is not None:
-                            txtfile.write(val.ljust(ALIGN_LENGTH))
                         else:
                             txtfile.write(" ".ljust(ALIGN_LENGTH))
                     txtfile.write('\n')
