@@ -83,16 +83,10 @@ def main():
         syn_qor = qor_reports
         syn_clock_qor = clock_qor
 
-        # Write results to CSV file and text file.
-#        sp.write_qor_to_csv(top_design, qor_reports, "qor", "syn")
-#        sp.write_data_to_text(top_design, qor_reports, "qor", "syn")
-
-#        sp.write_qor_to_csv(top_design, clock_qor_reports, "clock_qor", "syn")
-#        sp.write_data_to_text(top_design, clock_qor_reports, "clock_qor", "syn")
 
         qor_reports = []
         clock_qor_reports = []
-        # Iterate through all stages of synopsys flow.
+        # Iterate through all stages of synopsys place and route flow.
         for stage in sp.STAGES:
 
             # Create file path and read the file.

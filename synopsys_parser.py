@@ -52,6 +52,16 @@ def format_qor_data(qor_report, stage):
 
     func_best.append(["func_best"])
     func_best.append(["Clock Path", HOLD_VIOLATION_STR, TOTAL_HOLD_VIOLATION_STR, NUM_HOLD_VIO_STR])
+
+    test_worst = []
+    test_best = []
+
+    test_worst.append(["test_worst"])
+    test_worst.append(["Clock Path", WNS_STR, TOTAL_NEG_SLACK_STR, NUM_VIO_PTH_STR])
+
+    test_best.append(["test_best"])
+    test_best.append(["Clock Path", HOLD_VIOLATION_STR, TOTAL_HOLD_VIOLATION_STR, NUM_HOLD_VIO_STR])
+
     i = 0
     for line in qor_report:
         rtn = line.find("Scenario")
@@ -62,6 +72,12 @@ def format_qor_data(qor_report, stage):
             rtn = line.find('func_best')
             if rtn != -1:
                 func_best.append([qor_report[i+1].split()[3], qor_report[i+2].split()[3], qor_report[i+3].split()[3], qor_report[i+4].split()[4]])
+            rtn = line.find('test_worst')
+            if rtn != -1:
+                test_worst.append([qor_report[i+1].split()[3], qor_report[i+2].split()[3], qor_report[i+3].split()[3], qor_report[i+4].split()[4]])
+            rtn = line.find('test_best')
+            if rtn != -1:
+                test_best.append([qor_report[i+1].split()[3], qor_report[i+2].split()[3], qor_report[i+3].split()[3], qor_report[i+4].split()[4]])
         i += 1
 
     # Add stage variable to top of list.
@@ -70,6 +86,10 @@ def format_qor_data(qor_report, stage):
     for row in func_worst:
         qor_report.append(row)
     for row in func_best:
+        qor_report.append(row)
+    for row in test_worst:
+        qor_report.append(row)
+    for row in test_best:
         qor_report.append(row)
 
 
@@ -101,7 +121,8 @@ def get_qor_data(qor_report):
                     rtn = qor_report[i+k].find(NUM_VIO_PTH_STR)
                     if rtn != -1:
                         qor_report_temp.append(qor_report[i+k])
-            else:
+            rtn = line.find('func_best')
+            if rtn != -1:
                 for k in range(2,12):
                     rtn = qor_report[i+k].find(HOLD_VIOLATION_STR)
                     if rtn != -1:
@@ -112,11 +133,39 @@ def get_qor_data(qor_report):
                     rtn = qor_report[i+k].find(NUM_HOLD_VIO_STR)
                     if rtn != -1:
                         qor_report_temp.append(qor_report[i+k])
+            rtn = line.find('test_worst')
+            if rtn != -1:
+                for k in range(2,12):
+                    rtn = qor_report[i+k].find(WNS_STR)
+                    if rtn != -1:
+                        qor_report_temp.append(qor_report[i+k])
+                    rtn = qor_report[i+k].find(TOTAL_NEG_SLACK_STR)
+                    if rtn != -1:
+                        qor_report_temp.append(qor_report[i+k])
+                    rtn = qor_report[i+k].find(NUM_VIO_PTH_STR)
+                    if rtn != -1:
+                        qor_report_temp.append(qor_report[i+k])
+            rtn = line.find('test_best')
+            if rtn != -1:
+                for k in range(2,12):
+                    rtn = qor_report[i+k].find(HOLD_VIOLATION_STR)
+                    if rtn != -1:
+                        qor_report_temp.append(qor_report[i+k])
+                    rtn = qor_report[i+k].find(TOTAL_HOLD_VIOLATION_STR)
+                    if rtn != -1:
+                        qor_report_temp.append(qor_report[i+k])
+                    rtn = qor_report[i+k].find(NUM_HOLD_VIO_STR)
+                    if rtn != -1:
+                        qor_report_temp.append(qor_report[i+k])
+
+
+
         i += 1
 
     qor_report = qor_report_temp
 
     return qor_report
+
 
 def parse_clock_qor(qor_report, stage):
     """
@@ -206,7 +255,7 @@ def write_qor_to_csv(top_design, reports, file_type):
             the /apr and /syn reports folders.
     """
     file_path = FOLDER_WRITE_PATH + top_design + '_' + file_type  \
-        + '_' + '_reports_parsed.csv'
+        + '_reports_parsed.csv'
     with open(file_path, 'w') as csvfile:
         qor_writer = csv.writer(csvfile)
         for report in reports:
@@ -232,7 +281,7 @@ def write_data_to_text(top_design, reports, file_type):
             the /apr and /syn reports folders.
     """
     file_path = FOLDER_WRITE_PATH + top_design + '_' + file_type \
-        + '_' + '_report_text.txt'
+        + '_report_text.txt'
     with open(file_path, 'w') as txtfile:
         for stage in reports:
             for row in stage:
