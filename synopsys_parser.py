@@ -83,14 +83,21 @@ def format_qor_data(qor_report, stage):
     # Add stage variable to top of list.
     qor_report = []
     qor_report.append(["STAGE:", stage])
-    for row in func_worst:
-        qor_report.append(row)
-    for row in func_best:
-        qor_report.append(row)
-    for row in test_worst:
-        qor_report.append(row)
-    for row in test_best:
-        qor_report.append(row)
+    # Not all scenarios may be present in the report. Don't append all scenario variables 
+    # if they aren't present in the report.
+    minimum_rows = 3
+    if len(func_worst) > minimum_rows:
+        for row in func_worst:
+            qor_report.append(row)
+    if len(func_best) > minimum_rows:
+        for row in func_best:
+            qor_report.append(row)
+    if len(test_worst) > minimum_rows:
+        for row in test_worst:
+            qor_report.append(row)
+    if len(test_best) > minimum_rows:
+        for row in test_best:
+            qor_report.append(row)
 
 
     return qor_report
@@ -186,7 +193,8 @@ def parse_clock_qor(qor_report, stage):
                     'Global Skew', 'Trans DRC Count', 'Cap DRC Count']])
             while qor_report[i + k].find('All Clocks') == -1:
                 if qor_report[i + k].find('###') != -1:
-                    clock_qor.append([[qor_report[i+k]]])
+                    index = len(clock_qor)-1
+                    clock_qor.insert(index, [[qor_report[i+k]]])
                 if qor_report[i + k].find('CLK') != -1:
                     clock_qor.append([qor_report[i+k].split()])
                 if qor_report[i + k].find('clk') != -1:

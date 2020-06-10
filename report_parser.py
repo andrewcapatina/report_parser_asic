@@ -13,7 +13,6 @@
 import cadence_parser as cp
 import synopsys_parser as sp
 
-import pandas as pd
 import sys
 
 FOLDER_READ_PATH = "reports/"       # Location of reports to be parsed.
