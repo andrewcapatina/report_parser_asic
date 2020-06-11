@@ -217,8 +217,8 @@ def read_file_apr(file_path):
         with open(file_path) as fp:
             qor_report = fp.readlines()
     except:
-        print("file path: " + file_path + " not found.")
-        return 1
+        print("FILE NOT FOUND: " + file_path)
+        return ""
 
     return qor_report
 
@@ -234,8 +234,8 @@ def read_file_syn(file_path):
         with open(file_path) as fp:
             qor_report = fp.readlines()
     except:
-        print("file path: " + file_path + " not found.")
-        return 1
+        print("FILE NOT FOUND: " + file_path)
+        return ""
 
     return qor_report
 

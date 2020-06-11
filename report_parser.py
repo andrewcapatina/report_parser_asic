@@ -52,23 +52,23 @@ def main():
         # Create file path and read the file.
         to_open = top_design + "." + stage + ".qor.rpt"
         qor_report = sp.read_file_syn(to_open)
-        # Error checking
-        if qor_report == 1:
-            return
 
-        # Get all important values from qor report.
-        qor_report = sp.get_qor_data(qor_report)
+        syn_qor = []
+        # Parse report if it was found. 
+        if qor_report != "":
+            # Get all important values from qor report.
+            qor_report = sp.get_qor_data(qor_report)
 
-        # Make the data viewable.
-        qor_report = sp.format_qor_data(qor_report, stage)
+            # Make the data viewable.
+            qor_report = sp.format_qor_data(qor_report, stage)
 
-        qor_report.insert(0, ["Flow:", "syn"])
+            qor_report.insert(0, ["Flow:", "syn"])
 
-        qor_reports = []
-        for row in qor_report:
-            qor_reports.append([row])
+            qor_reports = []
+            for row in qor_report:
+                qor_reports.append([row])
 
-        syn_qor = qor_reports
+            syn_qor = qor_reports
 
         qor_reports = []
         clock_qor_reports = []
@@ -78,9 +78,9 @@ def main():
             # Create file path and read the file.
             to_open = top_design + "." + stage + ".qor.rpt"
             qor_report = sp.read_file_apr(to_open)
-            # Error checking
-            if qor_report == 1:
-                return
+            # Error checking. Skip parsing the file if it wasn't found. 
+            if qor_report == "":
+                continue
 
             # Get all important values from qor report.
             qor_report = sp.get_qor_data(qor_report)
