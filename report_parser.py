@@ -79,27 +79,28 @@ def main():
             to_open = top_design + "." + stage + ".qor.rpt"
             qor_report = sp.read_file_apr(to_open)
             # Error checking. Skip parsing the file if it wasn't found. 
-            if qor_report == "":
-                continue
+            if qor_report != "":
 
-            # Get all important values from qor report.
-            qor_report = sp.get_qor_data(qor_report)
+                # Get all important values from qor report.
+                qor_report = sp.get_qor_data(qor_report)
 
-            # Make the data viewable.
-            qor_report = sp.format_qor_data(qor_report, stage)
+                # Make the data viewable.
+                qor_report = sp.format_qor_data(qor_report, stage)
 
-            # Add report for this stage in a list saved.
-            qor_reports.append(qor_report)
+                # Add report for this stage in a list saved.
+                qor_reports.append(qor_report)
 
             # Read clock_qor report.
             to_open = top_design + "." + stage + ".clock_qor.rpt"
             clock_qor = sp.read_file_apr(to_open)
+            # Error checking. Skip parsing the file if it wasn't found. 
+            if clock_qor != "":
 
-            # Parse and format the clock_qor report.
-            clock_qor = sp.parse_clock_qor(clock_qor, stage)
+                # Parse and format the clock_qor report.
+                clock_qor = sp.parse_clock_qor(clock_qor, stage)
 
-            # Add report for this stage to the list of reports. 
-            clock_qor_reports.append(clock_qor)
+                # Add report for this stage to the list of reports. 
+                clock_qor_reports.append(clock_qor)
 
         qor_reports.insert(0, [["Flow:", "apr"]])
         clock_qor_reports.insert(0, [["Flow:", "apr"]])
