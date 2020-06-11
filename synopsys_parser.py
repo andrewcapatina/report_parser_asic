@@ -27,7 +27,6 @@ WNS_STR = 'Critical Path Slack:'
 NUM_VIO_PTH_STR = 'No. of Violating Paths'
 
 # Variable for different stages in the ASIC design flow.
-#STAGES = ['synth', 'place', 'cts', 'post-cts', 'route', 'pt']
 STAGES = ['place2', 'cts2', 'postcts2', 'route2']
 
 # Labels used for columns of clock_qor report.
