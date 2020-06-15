@@ -1,0 +1,46 @@
+****************************************
+ Report : check_design 
+ Options: { pre_route_stage }
+ Design : ORCA_TOP
+ Version: P-2019.03-SP1-VAL
+ Date   : Thu Jun 11 12:01:31 2020
+****************************************
+
+Running mega-check 'pre_route_stage': 
+    Running atomic-check 'design_mismatch'
+    Running atomic-check 'scan_chain'
+    Running atomic-check 'mv_design'
+    Running atomic-check 'design_extraction'
+    Running atomic-check 'timing'
+    Running atomic-check 'routability'
+    Running atomic-check 'hier_pre_route'
+
+  *** EMS Message summary ***
+  ----------------------------------------------------------------------------------------------------
+  Rule         Type   Count      Message
+  ----------------------------------------------------------------------------------------------------
+  CR-035       Error  3          Port %instance %port at (%x1 %y1)_(%x2 %y2) on %layers is blocke...
+  DFT-004      Error  3          Inconsistency exists between the design scandef and the netlist ...
+  MV-012       Warn   2          %drvType '%driver' (supply net '%drvSupplyNet' [%drvVoltage]) ca...
+  TCK-001      Warn   15681      The reported endpoint '%endpoint' is unconstrained. Reason: '%re...
+  TCK-002      Warn   12         The register clock pin '%pin' has no fanin clocks. Mode:'%mode'.
+  TCK-004      Warn   2          The generated clock '%gclock' has no path from master clock '%mc...
+  TCK-012      Warn   10         The input port '%port' has no clock_relative delay specified. Mo...
+  TCK-013      Warn   4          The clocks '%clocks' at gated clock point '%conn' has no fanout ...
+  ----------------------------------------------------------------------------------------------------
+  Total 15717 EMS messages : 6 errors, 15711 warnings, 0 info.
+  ----------------------------------------------------------------------------------------------------
+
+  *** Non-EMS message summary ***
+  ----------------------------------------------------------------------------------------------------
+  Rule         Type   Count      Message
+  ----------------------------------------------------------------------------------------------------
+  ZRT-022             1          Cannot find a default contact code for layer %s.
+  ZRT-027             1          Ignore %d top cell ports with no pins.
+  ----------------------------------------------------------------------------------------------------
+  Total 2 non-EMS messages : 0 errors, 2 warnings, 0 info.
+  ----------------------------------------------------------------------------------------------------
+
+Information: EMS database is saved to file 'check_design.ems'.
+Information: Non-EMS messages are saved into file 'check_design2020Jun11120131.log'.
+1

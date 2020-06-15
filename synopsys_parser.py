@@ -18,7 +18,7 @@ FOLDER_WRITE_PATH = "outputs/"      # Location of the output parsed file.
 
 # Update the below global variables if qor.rpt or clock_qor.rpt
 # file reporting format changes.
-ALIGN_LENGTH = 20   # The largest string to be displayed for reporting. 
+ALIGN_LENGTH = 25   # The largest string to be displayed for reporting. 
 HOLD_VIOLATION_STR = "Worst Hold Violation:"
 TOTAL_HOLD_VIOLATION_STR = 'Total Hold Violation:'
 NUM_HOLD_VIO_STR = "No. of Hold Violations"
@@ -35,7 +35,7 @@ COLUMN_LABELS_CLOCK_QOR = ['Sinks', 'Levels', 'Clock Repeater Count',
                            'Max Latency', 'Global Skew',
                            'Trans DRC Count', 'Cap DRC Count']
 
-def format_qor_data(qor_report, stage):
+def format_qor_data_apr(qor_report, stage):
     """
     Function to make the data easier to read 
     for CSV/text format.
@@ -100,6 +100,55 @@ def format_qor_data(qor_report, stage):
 
 
     return qor_report
+
+
+def format_qor_data_syn(qor_report, stage):
+    """
+    Function to make the data easier to read 
+    for CSV/text format.
+
+    input: qor_report: list containing items to be organized.
+    input: stage: string of current stage being processed.
+
+    """
+    qor_report_temp = []
+    qor_report_temp.append(["Timing Path Group", WNS_STR, TOTAL_NEG_SLACK_STR,
+                            NUM_VIO_PTH_STR, HOLD_VIOLATION_STR, TOTAL_HOLD_VIOLATION_STR,
+                            NUM_HOLD_VIO_STR])
+    report_row = []
+    for line in qor_report:
+        line = line.strip("'")
+        rtn = line.find("Timing Path Group")
+        if rtn != -1:
+            report_row = []
+            report_row.append(line.split()[3])
+        rtn = line.find(WNS_STR)
+        if rtn != -1:
+            report_row.append(line.split()[3])
+        rtn = line.find(TOTAL_NEG_SLACK_STR)
+        if rtn != -1:
+            report_row.append(line.split()[3])
+        rtn = line.find(NUM_VIO_PTH_STR)
+        if rtn != -1:
+            report_row.append(line.split()[4])
+        rtn = line.find(HOLD_VIOLATION_STR)
+        if rtn != -1:
+            report_row.append(line.split()[3])
+        rtn = line.find(TOTAL_HOLD_VIOLATION_STR)
+        if rtn != -1:
+            report_row.append(line.split()[3])
+        rtn = line.find(NUM_HOLD_VIO_STR)
+        if rtn != -1:
+            report_row.append(line.split()[4])
+            report_row = pd.DataFrame(report_row)
+            report_row = report_row.transpose()
+            report_row = report_row.values.tolist()
+            qor_report_temp.append(report_row)
+
+    qor_report = qor_report_temp
+    
+    return qor_report
+
 
 def get_qor_data(qor_report):
     """
@@ -239,16 +288,6 @@ def read_file_syn(file_path):
 
     return qor_report
 
-
-def transpose_data(clock_qor):
-    """
-        Function to take input and transpose it.
-
-    """
-    clock_qor = pd.DataFrame(clock_qor)
-    clock_qor = clock_qor.transpose()
-    clock_qor = clock_qor.values.tolist()
-    return clock_qor
 
 def write_qor_to_csv(top_design, reports, file_type):
     """

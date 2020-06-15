@@ -47,28 +47,30 @@ def main():
         qor_reports = []
         clock_qor_reports = []
         # Only one stage in flow for DC shell. (/syn/reports/)
-        stage = "dc"
+        dc_stage = ["dc", "dct"]
+        qor_reports = []
+        for stage in dc_stage:
+            # Create file path and read the file.
+            to_open = top_design + "." + stage + ".qor.rpt"
+            qor_report = sp.read_file_syn(to_open)
 
-        # Create file path and read the file.
-        to_open = top_design + "." + stage + ".qor.rpt"
-        qor_report = sp.read_file_syn(to_open)
+            syn_qor = []
+            # Parse report if it was found. 
+            if qor_report != "":
+                # Get all important values from qor report.
+                #qor_report = sp.get_qor_data(qor_report)
 
-        syn_qor = []
-        # Parse report if it was found. 
-        if qor_report != "":
-            # Get all important values from qor report.
-            qor_report = sp.get_qor_data(qor_report)
+                # Make the data viewable.
+                qor_report = sp.format_qor_data_syn(qor_report, stage)
 
-            # Make the data viewable.
-            qor_report = sp.format_qor_data(qor_report, stage)
+                qor_report.insert(0, ["Flow:", "syn"])
+                qor_report.insert(1, ["Stage:", stage])
 
-            qor_report.insert(0, ["Flow:", "syn"])
+ 
+                for row in qor_report:
+                    qor_reports.append([row])
 
-            qor_reports = []
-            for row in qor_report:
-                qor_reports.append([row])
-
-            syn_qor = qor_reports
+        syn_qor = qor_reports
 
         qor_reports = []
         clock_qor_reports = []
@@ -85,7 +87,7 @@ def main():
                 qor_report = sp.get_qor_data(qor_report)
 
                 # Make the data viewable.
-                qor_report = sp.format_qor_data(qor_report, stage)
+                qor_report = sp.format_qor_data_apr(qor_report, stage)
 
                 # Add report for this stage in a list saved.
                 qor_reports.append(qor_report)

@@ -1,0 +1,71 @@
+****************************************
+Report : clock timing
+        -type skew
+        -nworst 1
+        -setup
+Design : ORCA_TOP
+Version: P-2019.03-SP1-VAL
+Date   : Thu Jun 11 12:02:02 2020
+****************************************
+Information: Timer using 'SI, Timing Window Analysis, CRPR'. (TIM-050)
+Scenario func_best is not configured for setup or hold analysis
+
+  Mode: func
+  Clock: PCI_CLK
+
+  Clock Pin                                 Latency      CRP      Skew             Corner
+------------------------------------------------------------------------------------------
+  occ_int2/U_clk_control_i_2/load_n_meta_2_l_reg/CLK
+                                               0.48                       rp-+       Cmax
+  occ_int2/U_clk_control_i_2/U_cycle_ctr_i/count_int_reg[0]/CLK
+                                               0.38     0.03      0.07    rp-+       Cmax
+
+------------------------------------------------------------------------------------------
+
+  Mode: func
+  Clock: SYS_2x_CLK
+
+  Clock Pin                                 Latency      CRP      Skew             Corner
+------------------------------------------------------------------------------------------
+  I_RISC_CORE/I_INSTRN_LAT_Crnt_Instrn_2_reg_6_/CLK
+                                               1.35                       rp-+       Cmax
+  I_RISC_CORE/I_REG_FILE_REG_FILE_C_RAM/CE2
+                                               1.14     0.08      0.12    rp-+       Cmax
+
+------------------------------------------------------------------------------------------
+
+  Mode: func
+  Clock: SYS_CLK
+
+  Clock Pin                                 Latency      CRP      Skew             Corner
+------------------------------------------------------------------------------------------
+  I_BLENDER_0/result_reg_22_/CLK               1.41                       rp-+       Cmax
+  I_PCI_TOP/I_PCI_WRITE_FIFO_PCI_FIFO_RAM_6/CE1
+                                               1.21     0.06      0.15    rp-+       Cmax
+
+------------------------------------------------------------------------------------------
+
+  Mode: func
+  Clock: SDRAM_CLK
+
+  Clock Pin                                 Latency      CRP      Skew             Corner
+------------------------------------------------------------------------------------------
+  I_SDRAM_TOP/I_SDRAM_IF/DQ_in_0_reg_15_/CLK
+                                               1.29                       rp-+       Cmax
+  I_SDRAM_TOP/I_SDRAM_READ_FIFO_SD_FIFO_RAM_0/CE1
+                                               1.06     0.08      0.15    rp-+       Cmax
+
+------------------------------------------------------------------------------------------
+
+  Mode: func
+  Clock: SD_DDR_CLK
+
+  No local skews.
+
+
+  Mode: func
+  Clock: SD_DDR_CLKn
+
+  No local skews.
+
+1

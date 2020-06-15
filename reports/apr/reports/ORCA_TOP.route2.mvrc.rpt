@@ -1,0 +1,84 @@
+****************************************
+Report : check_mv_design
+Design : ORCA_TOP
+Version: P-2019.03-SP1-VAL
+Date   : Thu Jun 11 12:02:01 2020
+****************************************
+
+---------- Power domain rule ----------
+No errors or warnings.
+
+---------- Supply set rule ----------
+No errors or warnings.
+
+---------- Supply net rule ----------
+No errors or warnings.
+
+---------- Supply port rule ----------
+No errors or warnings.
+
+---------- Isolation strategy rule ----------
+No errors or warnings.
+
+---------- Level shifter strategy rule ----------
+No errors or warnings.
+
+---------- Retention strategy rule ----------
+No errors or warnings.
+
+---------- Power switch strategy rule ----------
+No errors or warnings.
+
+---------- Repeater rule ----------
+No errors or warnings.
+
+---------- Terminal boundary rule ----------
+No errors or warnings.
+
+---------- Isolation cell rule ----------
+No errors or warnings.
+
+---------- Level shifter cell rule ----------
+No errors or warnings.
+
+---------- Retention cell rule ----------
+No errors or warnings.
+
+---------- Switch cell rule ----------
+No errors or warnings.
+
+---------- PGMUX rule ----------
+No errors or warnings.
+
+---------- Diode cell rule ----------
+No errors or warnings.
+
+---------- Model rule ----------
+No errors or warnings.
+
+---------- Isolation rule ----------
+No errors or warnings.
+
+---------- Voltage shifting rule ----------
+Warning: Driver pin 'cts_buf_656431560/Y' (supply net 'VDD' [0.75V]) cannot drive load pin 'I_RISC_CORE/cts_buf_655531551/A' (supply net 'VDDH' [0.95V]) due to voltage difference. (MV-012)
+Warning: Driver pin 'cts_buf_656431560/Y' (supply net 'VDD' [0.75V]) cannot drive load pin 'I_RISC_CORE/cts_buf_655131547/A' (supply net 'VDDH' [0.95V]) due to voltage difference. (MV-012)
+Information: Total 2 MV-012 violations. (MV-080)
+
+---------- Tie-off connection rule ----------
+No errors or warnings.
+
+---------- Analog net rule ----------
+No errors or warnings.
+
+---------- Physical block pin rule ----------
+No errors or warnings.
+
+---------- PG pin rule ----------
+No errors or warnings.
+
+---------- Signal pin rule ----------
+No errors or warnings.
+
+---------- Summary ----------
+Information: Total 0 error(s) and 2 warning(s) from check_mv_design. (MV-082)
+1

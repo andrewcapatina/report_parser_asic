@@ -1,134 +1,69 @@
 Flow:,syn
-STAGE:,dc
-func_worst
-Clock Path,Critical Path Slack:,Total Negative Slack:,No. of Violating Paths
-'PCI_CLK',-0.12,-0.75,13
-'v_PCI_CLK',2.09,0.00,0
-'SYS_2x_CLK',-0.21,-0.31,4
-'SYS_CLK',-9.77,-1418.78,384
-'SDRAM_CLK',-3.23,-891.78,976
-func_best
-Clock Path,Worst Hold Violation:,Total Hold Violation:,No. of Hold Violations
-'PCI_CLK',0.00,0.00,0
-'v_PCI_CLK',0.00,0.00,0
-'SYS_2x_CLK',0.00,0.00,0
-'SYS_CLK',0.00,0.00,0
-'SDRAM_CLK',-0.11,-6.62,64
-test_worst
-Clock Path,Critical Path Slack:,Total Negative Slack:,No. of Violating Paths
-'PCI_CLK',-0.16,-1.39,19
-'v_PCI_CLK',2.05,0.00,0
-'SYS_2x_CLK',-2.20,-2.71,6
-'SYS_CLK',-9.81,-1436.86,388
-'SDRAM_CLK',-3.27,-978.72,998
-'SD_DDR_CLK',-1.97,-49.67,32
-'ate_clk',5.37,0.00,0
-test_best
-Clock Path,Worst Hold Violation:,Total Hold Violation:,No. of Hold Violations
-'PCI_CLK',0.00,0.00,0
-'v_PCI_CLK',0.00,0.00,0
-'SYS_2x_CLK',0.00,0.00,0
-'SYS_CLK',0.00,0.00,0
-'SDRAM_CLK',-0.11,-6.62,64
-'SD_DDR_CLK',0.00,0.00,0
-'ate_clk',0.00,0.00,0
+Stage:,dc
+Timing Path Group,Critical Path Slack:,Total Negative Slack:,No. of Violating Paths,Worst Hold Violation:,Total Hold Violation:,No. of Hold Violations
+'PCI_CLK',0.01,0.00,0.00,0.00,0.00,0.00
+'SDRAM_CLK',0.00,0.00,0.00,-0.00,-0.03,6.00
+'SYS_2x_CLK',0.00,0.00,0.00,-0.05,-1.87,36.00
+'SYS_CLK',0.00,0.00,0.00,-0.07,-8.85,128.00
+'v_PCI_CLK',3.67,0.00,0.00,-0.45,-14.27,32.00
 Flow:,apr
 STAGE:,place2
 func_worst
 Clock Path,Critical Path Slack:,Total Negative Slack:,No. of Violating Paths
-'PCI_CLK',-0.35,-6.25,33
-'v_PCI_CLK',0.05,0.00,0
-'SYS_2x_CLK',-9.25,-292.54,76
-'SYS_CLK',-102626.05,-4063218.20,1698
-'SDRAM_CLK',-2974.22,-5702683.32,2684
-func_best
-Clock Path,Worst Hold Violation:,Total Hold Violation:,No. of Hold Violations
-'PCI_CLK',-0.20,-47.57,384
-'v_PCI_CLK',0.00,0.00,0
-'SYS_2x_CLK',0.00,0.00,0
-'SYS_CLK',-5276.88,-2706466.25,2458
-'SDRAM_CLK',-1818.52,-4678326.00,5393
+'PCI_CLK',0.01,0.00,0
+'v_PCI_CLK',2.51,0.00,0
+'SYS_2x_CLK',-0.00,-0.00,1
+'SYS_CLK',-0.22,-7.63,102
+'SDRAM_CLK',0.00,0.00,0
 test_worst
 Clock Path,Critical Path Slack:,Total Negative Slack:,No. of Violating Paths
-'PCI_CLK',-0.35,-6.25,33
-'v_PCI_CLK',0.05,0.00,0
-'SYS_2x_CLK',-9.31,-296.13,77
-'SYS_CLK',-101950.60,-6652115.19,2767
-'SDRAM_CLK',-11175.80,-11082327.86,5303
-'SD_DDR_CLK',-11183.02,-357722.88,33
-'ate_clk',-101925.40,-18485684.88,8275
-test_best
-Clock Path,Worst Hold Violation:,Total Hold Violation:,No. of Hold Violations
-'PCI_CLK',0.00,0.00,0
-'v_PCI_CLK',0.00,0.00,0
-'SYS_2x_CLK',0.00,0.00,0
-'SYS_CLK',-12066.04,-2718523.75,2713
-'SDRAM_CLK',-6059.10,-2157418.75,4439
-'SD_DDR_CLK',0.00,0.00,0
-'ate_clk',-12066.04,-9313757.00,7492
+'PCI_CLK',3.48,0.00,0
+'SYS_2x_CLK',0.15,0.00,0
+'SYS_CLK',0.76,0.00,0
+'SDRAM_CLK',0.12,0.00,0
+'ate_clk',5.93,0.00,0
 STAGE:,cts2
 func_worst
 Clock Path,Critical Path Slack:,Total Negative Slack:,No. of Violating Paths
-'PCI_CLK',-0.12,-0.75,13
-'v_PCI_CLK',2.09,0.00,0
-'SYS_2x_CLK',-0.21,-0.31,4
-'SYS_CLK',-9.77,-1418.78,384
-'SDRAM_CLK',-3.23,-891.78,976
-func_best
-Clock Path,Worst Hold Violation:,Total Hold Violation:,No. of Hold Violations
-'PCI_CLK',0.00,0.00,0
-'v_PCI_CLK',0.00,0.00,0
-'SYS_2x_CLK',0.00,0.00,0
-'SYS_CLK',0.00,0.00,0
-'SDRAM_CLK',-0.11,-6.62,64
+'PCI_CLK',0.01,0.00,0
+'v_PCI_CLK',1.67,0.00,0
+'SYS_2x_CLK',-0.16,-0.47,12
+'SYS_CLK',-0.14,-4.74,86
+'SDRAM_CLK',0.06,0.00,0
 test_worst
 Clock Path,Critical Path Slack:,Total Negative Slack:,No. of Violating Paths
-'PCI_CLK',-0.16,-1.39,19
-'v_PCI_CLK',2.05,0.00,0
-'SYS_2x_CLK',-2.20,-2.71,6
-'SYS_CLK',-9.81,-1436.86,388
-'SDRAM_CLK',-3.27,-978.72,998
-'SD_DDR_CLK',-1.97,-49.67,32
-'ate_clk',5.37,0.00,0
-test_best
-Clock Path,Worst Hold Violation:,Total Hold Violation:,No. of Hold Violations
-'PCI_CLK',0.00,0.00,0
-'v_PCI_CLK',0.00,0.00,0
-'SYS_2x_CLK',0.00,0.00,0
-'SYS_CLK',0.00,0.00,0
-'SDRAM_CLK',-0.11,-6.62,64
-'SD_DDR_CLK',0.00,0.00,0
-'ate_clk',0.00,0.00,0
+'PCI_CLK',3.46,0.00,0
+'SYS_2x_CLK',0.16,0.00,0
+'SYS_CLK',0.76,0.00,0
+'SDRAM_CLK',0.08,0.00,0
+'ate_clk',5.81,0.00,0
+STAGE:,postcts2
+func_worst
+Clock Path,Critical Path Slack:,Total Negative Slack:,No. of Violating Paths
+'PCI_CLK',-0.01,-0.01,3
+'v_PCI_CLK',1.40,0.00,0
+'SYS_2x_CLK',-0.00,-0.01,3
+'SYS_CLK',-0.12,-2.06,59
+'SDRAM_CLK',-0.01,-0.01,3
+test_worst
+Clock Path,Critical Path Slack:,Total Negative Slack:,No. of Violating Paths
+'PCI_CLK',3.46,0.00,0
+'SYS_2x_CLK',0.01,0.00,0
+'SYS_CLK',0.75,0.00,0
+'SDRAM_CLK',0.11,0.00,0
+'ate_clk',3.08,0.00,0
 STAGE:,route2
 func_worst
 Clock Path,Critical Path Slack:,Total Negative Slack:,No. of Violating Paths
-'PCI_CLK',-0.16,-0.32,3
-'v_PCI_CLK',1.38,0.00,0
-'SYS_2x_CLK',0.04,0.00,0
-'SYS_CLK',-0.59,-40.63,135
-'SDRAM_CLK',-0.00,-0.00,1
-func_best
-Clock Path,Worst Hold Violation:,Total Hold Violation:,No. of Hold Violations
-'PCI_CLK',0.00,0.00,0
-'v_PCI_CLK',0.00,0.00,0
-'SYS_2x_CLK',0.00,0.00,0
-'SYS_CLK',0.00,0.00,0
-'SDRAM_CLK',-0.04,-0.19,8
+'PCI_CLK',-0.00,-0.01,3
+'v_PCI_CLK',1.59,0.00,0
+'SYS_2x_CLK',-0.00,-0.00,3
+'SYS_CLK',-0.18,-2.11,47
+'SDRAM_CLK',-0.06,-0.11,3
 test_worst
 Clock Path,Critical Path Slack:,Total Negative Slack:,No. of Violating Paths
-'PCI_CLK',-0.22,-0.50,4
-'v_PCI_CLK',1.33,0.00,0
-'SYS_2x_CLK',-0.22,-0.34,13
-'SYS_CLK',-0.64,-48.53,160
-'SDRAM_CLK',-0.04,-0.16,16
-'SD_DDR_CLK',-0.01,-0.01,2
-'ate_clk',2.82,0.00,0
-test_best
-Clock Path,Worst Hold Violation:,Total Hold Violation:,No. of Hold Violations
-'PCI_CLK',0.00,0.00,0
-'v_PCI_CLK',0.00,0.00,0
-'SYS_2x_CLK',0.00,0.00,0
-'SYS_CLK',0.00,0.00,0
-'SDRAM_CLK',-0.04,-0.19,8
-'SD_DDR_CLK',0.00,0.00,0
-'ate_clk',0.00,0.00,0
+'PCI_CLK',3.38,0.00,0
+'SYS_2x_CLK',0.18,0.00,0
+'SYS_CLK',0.68,0.00,0
+'SDRAM_CLK',0.12,0.00,0
+'ate_clk',2.93,0.00,0
