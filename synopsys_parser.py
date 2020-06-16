@@ -273,8 +273,7 @@ def parse_clock_qor(qor_report, stage):
                     'Global Skew', 'Trans DRC Count', 'Cap DRC Count']])
             while qor_report[i + k].find('All Clocks') == -1:
                 if qor_report[i + k].find('###') != -1:
-                    index = len(clock_qor)-1
-                    clock_qor.insert(index, [[qor_report[i+k]]])
+                    clock_qor.append([qor_report[i+k]])
                 if qor_report[i + k].find('CLK') != -1:
                     clock_qor.append([qor_report[i+k].split()])
                 if qor_report[i + k].find('clk') != -1:
