@@ -5,7 +5,7 @@ Warning: Design 'ORCA_TOP' contains 5 high-fanout nets. A fanout number of 1000 
 Report : qor
 Design : ORCA_TOP
 Version: P-2019.03-SP1-1
-Date   : Sun Jun 14 20:31:46 2020
+Date   : Tue Jun 16 01:18:39 2020
 ****************************************
 
 
@@ -117,12 +117,12 @@ Date   : Sun Jun 14 20:31:46 2020
 
   Compile CPU Statistics
   -----------------------------------------
-  Resource Sharing:                    0.37
-  Logic Optimization:                 64.41
-  Mapping Optimization:              229.31
+  Resource Sharing:                    0.38
+  Logic Optimization:                 59.64
+  Mapping Optimization:              223.16
   -----------------------------------------
-  Overall Compile Time:              547.06
-  Overall Compile Wall Clock Time:   594.23
+  Overall Compile Time:              531.31
+  Overall Compile Wall Clock Time:   579.42
 
   --------------------------------------------------------------------
 

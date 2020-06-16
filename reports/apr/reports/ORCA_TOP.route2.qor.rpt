@@ -2,7 +2,7 @@
 Report : qor
 Design : ORCA_TOP
 Version: P-2019.03-SP1-VAL
-Date   : Thu Jun 11 12:01:26 2020
+Date   : Tue Jun 16 02:37:46 2020
 ****************************************
 Information: Timer using 'SI, Timing Window Analysis, CRPR'. (TIM-050)
 
@@ -10,20 +10,20 @@ Information: Timer using 'SI, Timing Window Analysis, CRPR'. (TIM-050)
 Scenario           'func_worst'
 Timing Path Group  'PCI_CLK'
 ----------------------------------------
-Levels of Logic:                     17
-Critical Path Length:              7.06
-Critical Path Slack:              -0.00
+Levels of Logic:                     21
+Critical Path Length:              7.02
+Critical Path Slack:               0.04
 Critical Path Clk Period:          7.50
-Total Negative Slack:             -0.01
-No. of Violating Paths:               3
+Total Negative Slack:              0.00
+No. of Violating Paths:               0
 ----------------------------------------
 
 Scenario           'func_worst'
 Timing Path Group  'v_PCI_CLK'
 ----------------------------------------
-Levels of Logic:                      2
-Critical Path Length:              2.40
-Critical Path Slack:               1.59
+Levels of Logic:                      1
+Critical Path Length:              1.83
+Critical Path Slack:               2.46
 Critical Path Clk Period:          7.50
 Total Negative Slack:              0.00
 No. of Violating Paths:               0
@@ -32,42 +32,53 @@ No. of Violating Paths:               0
 Scenario           'func_worst'
 Timing Path Group  'SYS_2x_CLK'
 ----------------------------------------
-Levels of Logic:                     20
-Critical Path Length:              2.16
-Critical Path Slack:              -0.00
+Levels of Logic:                     10
+Critical Path Length:              2.10
+Critical Path Slack:               0.04
 Critical Path Clk Period:          2.40
-Total Negative Slack:             -0.00
-No. of Violating Paths:               3
+Total Negative Slack:              0.00
+No. of Violating Paths:               0
 ----------------------------------------
 
 Scenario           'func_worst'
 Timing Path Group  'SYS_CLK'
 ----------------------------------------
-Levels of Logic:                     34
-Critical Path Length:              4.70
-Critical Path Slack:              -0.18
+Levels of Logic:                     35
+Critical Path Length:              4.41
+Critical Path Slack:              -0.12
 Critical Path Clk Period:          4.80
-Total Negative Slack:             -2.11
-No. of Violating Paths:              47
+Total Negative Slack:             -0.78
+No. of Violating Paths:              22
 ----------------------------------------
 
 Scenario           'func_worst'
 Timing Path Group  'SDRAM_CLK'
 ----------------------------------------
-Levels of Logic:                      3
-Critical Path Length:              3.79
-Critical Path Slack:              -0.06
+Levels of Logic:                      5
+Critical Path Length:              2.36
+Critical Path Slack:               0.01
 Critical Path Clk Period:          4.10
-Total Negative Slack:             -0.11
-No. of Violating Paths:               3
+Total Negative Slack:              0.00
+No. of Violating Paths:               0
 ----------------------------------------
 
 Scenario           'test_worst'
 Timing Path Group  'PCI_CLK'
 ----------------------------------------
-Levels of Logic:                      3
-Critical Path Length:              3.31
-Critical Path Slack:               3.38
+Levels of Logic:                     21
+Critical Path Length:              7.02
+Critical Path Slack:              -0.00
+Critical Path Clk Period:          7.50
+Total Negative Slack:             -0.00
+No. of Violating Paths:               1
+----------------------------------------
+
+Scenario           'test_worst'
+Timing Path Group  'v_PCI_CLK'
+----------------------------------------
+Levels of Logic:                      1
+Critical Path Length:              1.83
+Critical Path Slack:               2.42
 Critical Path Clk Period:          7.50
 Total Negative Slack:              0.00
 No. of Violating Paths:               0
@@ -76,43 +87,43 @@ No. of Violating Paths:               0
 Scenario           'test_worst'
 Timing Path Group  'SYS_2x_CLK'
 ----------------------------------------
-Levels of Logic:                      2
-Critical Path Length:              1.79
-Critical Path Slack:               0.18
+Levels of Logic:                     10
+Critical Path Length:              2.10
+Critical Path Slack:              -0.00
 Critical Path Clk Period:          2.40
-Total Negative Slack:              0.00
-No. of Violating Paths:               0
+Total Negative Slack:             -0.00
+No. of Violating Paths:               1
 ----------------------------------------
 
 Scenario           'test_worst'
 Timing Path Group  'SYS_CLK'
 ----------------------------------------
-Levels of Logic:                      3
-Critical Path Length:              3.34
-Critical Path Slack:               0.68
+Levels of Logic:                     35
+Critical Path Length:              4.41
+Critical Path Slack:              -0.16
 Critical Path Clk Period:          4.80
-Total Negative Slack:              0.00
-No. of Violating Paths:               0
+Total Negative Slack:             -2.20
+No. of Violating Paths:              59
 ----------------------------------------
 
 Scenario           'test_worst'
 Timing Path Group  'SDRAM_CLK'
 ----------------------------------------
 Levels of Logic:                      3
-Critical Path Length:              3.28
-Critical Path Slack:               0.12
+Critical Path Length:              2.53
+Critical Path Slack:              -0.01
 Critical Path Clk Period:          4.10
-Total Negative Slack:              0.00
-No. of Violating Paths:               0
+Total Negative Slack:             -0.02
+No. of Violating Paths:               5
 ----------------------------------------
 
 Scenario           'test_worst'
-Timing Path Group  'ate_clk'
+Timing Path Group  'SD_DDR_CLK'
 ----------------------------------------
-Levels of Logic:                      7
-Critical Path Length:              8.67
-Critical Path Slack:               2.93
-Critical Path Clk Period:         30.00
+Levels of Logic:                      2
+Critical Path Length:              0.63
+Critical Path Slack:               0.03
+Critical Path Clk Period:          4.10
 Total Negative Slack:              0.00
 No. of Violating Paths:               0
 ----------------------------------------
@@ -120,42 +131,42 @@ No. of Violating Paths:               0
 
 Cell Count
 ----------------------------------------
-Hierarchical Cell Count:             63
-Hierarchical Port Count:           3060
-Leaf Cell Count:                  46221
-Buf/Inv Cell Count:                8153
-Buf Cell Count:                    3678
-Inv Cell Count:                    4475
+Hierarchical Cell Count:             31
+Hierarchical Port Count:           2188
+Leaf Cell Count:                  45012
+Buf/Inv Cell Count:                7182
+Buf Cell Count:                    2803
+Inv Cell Count:                    4379
 CT Buf/Inv Cell Count:                0
-Combinational Cell Count:         41020
-Sequential Cell Count:             5201
+Combinational Cell Count:         39863
+Sequential Cell Count:             5149
 Macro Count:                         40
 ----------------------------------------
 
 
 Area
 ----------------------------------------
-Combinational Area:           106984.71
-Noncombinational Area:         47157.69
-Buf/Inv Area:                  18680.35
-Total Buffer Area:             12192.05
-Total Inverter Area:            6488.30
+Combinational Area:           103632.30
+Noncombinational Area:         46606.71
+Buf/Inv Area:                  15852.23
+Total Buffer Area:              9532.94
+Total Inverter Area:            6319.29
 Macro/Black Box Area:         231744.78
 Net Area:                             0
 Net XLength:                       0.00
 Net YLength:                       0.00
 ----------------------------------------
-Cell Area (netlist):                         385887.19
+Cell Area (netlist):                         381983.79
 Cell Area (netlist and physical only):       501932.64
 Net Length:                        0.00
 
 
 Design Rules
 ----------------------------------------
-Total Number of Nets:             49242
-Nets with Violations:               230
-Max Trans Violations:                56
-Max Cap Violations:                 230
+Total Number of Nets:             48024
+Nets with Violations:               141
+Max Trans Violations:                14
+Max Cap Violations:                 140
 ----------------------------------------
 
 1

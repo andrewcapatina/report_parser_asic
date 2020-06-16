@@ -3,7 +3,7 @@
  Options: { pre_route_stage }
  Design : ORCA_TOP
  Version: P-2019.03-SP1-VAL
- Date   : Thu Jun 11 12:01:31 2020
+ Date   : Tue Jun 16 02:37:51 2020
 ****************************************
 
 Running mega-check 'pre_route_stage': 
@@ -20,15 +20,12 @@ Running mega-check 'pre_route_stage':
   Rule         Type   Count      Message
   ----------------------------------------------------------------------------------------------------
   CR-035       Error  3          Port %instance %port at (%x1 %y1)_(%x2 %y2) on %layers is blocke...
-  DFT-004      Error  3          Inconsistency exists between the design scandef and the netlist ...
-  MV-012       Warn   2          %drvType '%driver' (supply net '%drvSupplyNet' [%drvVoltage]) ca...
-  TCK-001      Warn   15681      The reported endpoint '%endpoint' is unconstrained. Reason: '%re...
-  TCK-002      Warn   12         The register clock pin '%pin' has no fanin clocks. Mode:'%mode'.
-  TCK-004      Warn   2          The generated clock '%gclock' has no path from master clock '%mc...
-  TCK-012      Warn   10         The input port '%port' has no clock_relative delay specified. Mo...
-  TCK-013      Warn   4          The clocks '%clocks' at gated clock point '%conn' has no fanout ...
+  DFT-011      Info   1          The design has no scan chain defined in the scandef.
+  MV-012       Warn   3          %drvType '%driver' (supply net '%drvSupplyNet' [%drvVoltage]) ca...
+  TCK-001      Warn   5803       The reported endpoint '%endpoint' is unconstrained. Reason: '%re...
+  TCK-012      Warn   2          The input port '%port' has no clock_relative delay specified. Mo...
   ----------------------------------------------------------------------------------------------------
-  Total 15717 EMS messages : 6 errors, 15711 warnings, 0 info.
+  Total 5812 EMS messages : 3 errors, 5808 warnings, 1 info.
   ----------------------------------------------------------------------------------------------------
 
   *** Non-EMS message summary ***
@@ -37,10 +34,14 @@ Running mega-check 'pre_route_stage':
   ----------------------------------------------------------------------------------------------------
   ZRT-022             1          Cannot find a default contact code for layer %s.
   ZRT-027             1          Ignore %d top cell ports with no pins.
+  ZRT-511             1          Cell contains tie connections which are not connected to real PG.
+  ZRT-642             20         %s.
   ----------------------------------------------------------------------------------------------------
-  Total 2 non-EMS messages : 0 errors, 2 warnings, 0 info.
+  Total 23 non-EMS messages : 0 errors, 23 warnings, 0 info.
   ----------------------------------------------------------------------------------------------------
 
+Warning: EMS database "check_design.ems" already exists, over-writing it. (EMS-040)
+
 Information: EMS database is saved to file 'check_design.ems'.
-Information: Non-EMS messages are saved into file 'check_design2020Jun11120131.log'.
+Information: Non-EMS messages are saved into file 'check_design2020Jun16023751.log'.
 1

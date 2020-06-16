@@ -13,7 +13,7 @@ Report : timing
         -capacitance
 Design : fifo1_sram
 Version: P-2019.03-SP1-1
-Date   : Wed Jun 10 20:38:35 2020
+Date   : Mon Jun 15 23:27:07 2020
 ****************************************
 
 Operating Conditions: ss0p75v125c   Library: saed32lvt_ss0p75v125c

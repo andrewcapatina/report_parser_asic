@@ -1,0 +1,35 @@
+ Info: Initializing timer in CLOCK_SYN_REPORT_MODE
+****************************************
+Report : clock qor
+        -type summary
+Design : fifo1_sram
+Version: P-2019.03-SP1-VAL
+Date   : Mon Jun 15 23:35:27 2020
+****************************************
+
+Attributes
+===========
+M Master Clock
+G Generated Clock
+& Internal Generated Clock
+U User Defined Skew Group
+D Default Skew Group
+* Generated Clock Balanced Separately
+
+===========================================
+==== Summary Reporting for Corner slow ====
+===========================================
+
+================================================== Summary Table for Corner slow ===================================================
+Clock /                               Attrs     Sinks Levels    Clock     Clock     Clock       Max    Global  Trans DRC  Cap DRC
+Skew Group                                                   Repeater  Repeater   Stdcell   Latency      Skew     Count     Count
+                                                                Count      Area      Area
+------------------------------------------------------------------------------------------------------------------------------------
+### Mode: func, Scenario: func_slow
+wclk                                    M,D        52      2        0      0.00  12000.00      0.00      0.00         0         0
+rclk                                    M,D        52      2        0      0.00  12000.00      0.00      0.00         0         0
+------------------------------------------------------------------------------------------------------------------------------------
+All Clocks                                        104      2        0      0.00  24000.00      0.00      0.00         0         0
+
+
+1

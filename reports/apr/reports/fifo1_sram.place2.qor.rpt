@@ -1,0 +1,79 @@
+****************************************
+Report : qor
+Design : fifo1_sram
+Version: P-2019.03-SP1-VAL
+Date   : Mon Jun 15 23:35:27 2020
+****************************************
+Information: Timer using 'SI, Timing Window Analysis, CRPR'. (TIM-050)
+
+
+Scenario           'func_slow'
+Timing Path Group  'wclk'
+----------------------------------------
+Levels of Logic:                     14
+Critical Path Length:              4.91
+Critical Path Slack:               0.77
+Critical Path Clk Period:          6.00
+Total Negative Slack:              0.00
+No. of Violating Paths:               0
+Worst Hold Violation:              0.00
+Total Hold Violation:              0.00
+No. of Hold Violations:               0
+----------------------------------------
+
+Scenario           'func_slow'
+Timing Path Group  'rclk'
+----------------------------------------
+Levels of Logic:                     12
+Critical Path Length:              2.05
+Critical Path Slack:               0.42
+Critical Path Clk Period:          3.00
+Total Negative Slack:              0.00
+No. of Violating Paths:               0
+Worst Hold Violation:              0.00
+Total Hold Violation:              0.00
+No. of Hold Violations:               0
+----------------------------------------
+
+
+Cell Count
+----------------------------------------
+Hierarchical Cell Count:              5
+Hierarchical Port Count:            199
+Leaf Cell Count:                    391
+Buf/Inv Cell Count:                 116
+Buf Cell Count:                      76
+Inv Cell Count:                      40
+CT Buf/Inv Cell Count:                0
+Combinational Cell Count:           287
+Sequential Cell Count:              104
+Macro Count:                          8
+----------------------------------------
+
+
+Area
+----------------------------------------
+Combinational Area:           300866.38
+Noncombinational Area:           835.12
+Buf/Inv Area:                    455.68
+Total Buffer Area:               400.28
+Total Inverter Area:              55.40
+Macro/Black Box Area:          69436.17
+Net Area:                             0
+Net XLength:                       0.00
+Net YLength:                       0.00
+----------------------------------------
+Cell Area (netlist):                         371137.67
+Cell Area (netlist and physical only):       372837.89
+Net Length:                        0.00
+
+
+Design Rules
+----------------------------------------
+Total Number of Nets:               528
+Nets with Violations:                 0
+Max Trans Violations:                 0
+Max Cap Violations:                   0
+----------------------------------------
+
+1

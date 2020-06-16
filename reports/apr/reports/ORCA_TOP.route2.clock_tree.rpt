@@ -5,7 +5,7 @@ Report : clock timing
         -setup
 Design : ORCA_TOP
 Version: P-2019.03-SP1-VAL
-Date   : Thu Jun 11 12:02:02 2020
+Date   : Tue Jun 16 02:38:23 2020
 ****************************************
 Information: Timer using 'SI, Timing Window Analysis, CRPR'. (TIM-050)
 Scenario func_best is not configured for setup or hold analysis
@@ -15,10 +15,9 @@ Scenario func_best is not configured for setup or hold analysis
 
   Clock Pin                                 Latency      CRP      Skew             Corner
 ------------------------------------------------------------------------------------------
-  occ_int2/U_clk_control_i_2/load_n_meta_2_l_reg/CLK
-                                               0.48                       rp-+       Cmax
-  occ_int2/U_clk_control_i_2/U_cycle_ctr_i/count_int_reg[0]/CLK
-                                               0.38     0.03      0.07    rp-+       Cmax
+  I_CLOCKING/pci_rst_n_buf_reg/CLK             0.63                       rp-+       Cmax
+  I_PCI_TOP/I_PCI_CORE_mega_shift_reg_3__16_/CLK
+                                               0.56     0.00      0.06    rp-+       Cmax
 
 ------------------------------------------------------------------------------------------
 
@@ -27,10 +26,10 @@ Scenario func_best is not configured for setup or hold analysis
 
   Clock Pin                                 Latency      CRP      Skew             Corner
 ------------------------------------------------------------------------------------------
-  I_RISC_CORE/I_INSTRN_LAT_Crnt_Instrn_2_reg_6_/CLK
-                                               1.35                       rp-+       Cmax
-  I_RISC_CORE/I_REG_FILE_REG_FILE_C_RAM/CE2
-                                               1.14     0.08      0.12    rp-+       Cmax
+  I_RISC_CORE/I_CONTROL_UseData_Imm_Or_ALU_reg/CLK
+                                               1.16                       rp-+       Cmax
+  I_RISC_CORE/I_REG_FILE_REG_FILE_D_RAM/CE1
+                                               0.98     0.07      0.11    rp-+       Cmax
 
 ------------------------------------------------------------------------------------------
 
@@ -39,9 +38,8 @@ Scenario func_best is not configured for setup or hold analysis
 
   Clock Pin                                 Latency      CRP      Skew             Corner
 ------------------------------------------------------------------------------------------
-  I_BLENDER_0/result_reg_22_/CLK               1.41                       rp-+       Cmax
-  I_PCI_TOP/I_PCI_WRITE_FIFO_PCI_FIFO_RAM_6/CE1
-                                               1.21     0.06      0.15    rp-+       Cmax
+  I_CONTEXT_MEM/I_CONTEXT_RAM_3_3/CE2          1.21                       rp-+       Cmax
+  I_BLENDER_1/s1_op1_reg_14_/CLK               1.04     0.03      0.13    rp-+       Cmax
 
 ------------------------------------------------------------------------------------------
 
@@ -50,10 +48,10 @@ Scenario func_best is not configured for setup or hold analysis
 
   Clock Pin                                 Latency      CRP      Skew             Corner
 ------------------------------------------------------------------------------------------
-  I_SDRAM_TOP/I_SDRAM_IF/DQ_in_0_reg_15_/CLK
-                                               1.29                       rp-+       Cmax
-  I_SDRAM_TOP/I_SDRAM_READ_FIFO_SD_FIFO_RAM_0/CE1
-                                               1.06     0.08      0.15    rp-+       Cmax
+  I_SDRAM_TOP/I_SDRAM_IF/mega_shift_0_reg_15__19_/CLK
+                                               0.74                       rp-+       Cmax
+  I_SDRAM_TOP/I_SDRAM_IF/mega_shift_0_reg_14__11_/CLK
+                                               0.61     0.04      0.08    rp-+       Cmax
 
 ------------------------------------------------------------------------------------------
 

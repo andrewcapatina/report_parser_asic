@@ -57,16 +57,14 @@ def main():
             syn_qor = []
             # Parse report if it was found. 
             if qor_report != "":
-                # Get all important values from qor report.
-                #qor_report = sp.get_qor_data(qor_report)
 
                 # Make the data viewable.
                 qor_report = sp.format_qor_data_syn(qor_report, stage)
 
+                # Add flow and stage label.
                 qor_report.insert(0, ["Flow:", "syn"])
-                qor_report.insert(1, ["Stage:", stage])
+                qor_report.insert(1, ["STAGE:", stage])
 
- 
                 for row in qor_report:
                     qor_reports.append([row])
 

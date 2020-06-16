@@ -1,0 +1,101 @@
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : qor
+Design : fifo1_sram
+Version: P-2019.03-SP1-1
+Date   : Mon Jun 15 23:32:10 2020
+****************************************
+
+
+  Timing Path Group 'rclk'
+  -----------------------------------
+  Levels of Logic:              14.00
+  Critical Path Length:          2.75
+  Critical Path Slack:           0.02
+  Critical Path Clk Period:      3.00
+  Total Negative Slack:          0.00
+  No. of Violating Paths:        0.00
+  Worst Hold Violation:          0.00
+  Total Hold Violation:          0.00
+  No. of Hold Violations:        0.00
+  -----------------------------------
+
+  Timing Path Group 'wclk'
+  -----------------------------------
+  Levels of Logic:              17.00
+  Critical Path Length:          5.74
+  Critical Path Slack:           0.02
+  Critical Path Clk Period:      6.00
+  Total Negative Slack:          0.00
+  No. of Violating Paths:        0.00
+  Worst Hold Violation:          0.00
+  Total Hold Violation:          0.00
+  No. of Hold Violations:        0.00
+  -----------------------------------
+
+
+  Cell Count
+  -----------------------------------
+  Hierarchical Cell Count:          5
+  Hierarchical Port Count:        195
+  Leaf Cell Count:                458
+  Buf/Inv Cell Count:             183
+  Buf Cell Count:                 143
+  Inv Cell Count:                  40
+  CT Buf/Inv Cell Count:            0
+  Combinational Cell Count:       354
+  Sequential Cell Count:          104
+  Macro Count:                      0
+  -----------------------------------
+
+
+  Area
+  -----------------------------------
+  Combinational Area:   181149.747474
+  Noncombinational Area:
+                        120853.923841
+  Buf/Inv Area:            709.315918
+  Total Buffer Area:           625.19
+  Total Inverter Area:          84.12
+  Macro/Black Box Area:  69436.171875
+  Net Area:                  0.000000
+  Net XLength        :       43694.30
+  Net YLength        :       43647.10
+  -----------------------------------
+  Cell Area:            371439.843190
+  Design Area:          371439.843190
+  Net Length        :        87341.41
+
+
+  Design Rules
+  -----------------------------------
+  Total Number of Nets:           567
+  Nets With Violations:            12
+  Max Trans Violations:            10
+  Max Cap Violations:               2
+  -----------------------------------
+
+
+  Hostname: auto.ece.pdx.edu
+
+  Compile CPU Statistics
+  -----------------------------------------
+  Resource Sharing:                    0.03
+  Logic Optimization:                  0.94
+  Mapping Optimization:                5.87
+  -----------------------------------------
+  Overall Compile Time:               30.49
+  Overall Compile Wall Clock Time:    34.55
+
+  --------------------------------------------------------------------
+
+  Design  WNS: 0.00  TNS: 0.00  Number of Violating Paths: 0
+
+
+  Design (Hold)  WNS: 0.00  TNS: 0.00  Number of Violating Paths: 0
+
+  --------------------------------------------------------------------
+
+
+1

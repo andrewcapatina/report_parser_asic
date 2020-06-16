@@ -43,8 +43,12 @@ def format_qor_data_apr(qor_report, stage):
     input: qor_report: list containing items to be organized.
     input: stage: string of current stage being processed.
     """
+    func_slow = []
     func_worst = []
     func_best = []
+
+    func_slow.append(["func_slow"])
+    func_slow.append(["Clock Path", WNS_STR, TOTAL_NEG_SLACK_STR, NUM_VIO_PTH_STR, HOLD_VIOLATION_STR, TOTAL_HOLD_VIOLATION_STR, NUM_HOLD_VIO_STR])
 
     func_worst.append(["func_worst"])
     func_worst.append(["Clock Path", WNS_STR, TOTAL_NEG_SLACK_STR, NUM_VIO_PTH_STR])
@@ -65,6 +69,10 @@ def format_qor_data_apr(qor_report, stage):
     for line in qor_report:
         rtn = line.find("Scenario")
         if rtn != -1:
+            rtn = line.find('func_slow')
+            if rtn != -1:
+                func_slow.append([qor_report[i+1].split()[3], qor_report[i+2].split()[3], qor_report[i+3].split()[3], qor_report[i+4].split()[4],
+                                   qor_report[i+2].split()[3], qor_report[i+3].split()[3], qor_report[i+4].split()[4]])
             rtn = line.find('func_worst')
             if rtn != -1:
                 func_worst.append([qor_report[i+1].split()[3], qor_report[i+2].split()[3], qor_report[i+3].split()[3], qor_report[i+4].split()[4]])
@@ -85,6 +93,9 @@ def format_qor_data_apr(qor_report, stage):
     # Not all scenarios may be present in the report. Don't append all scenario variables 
     # if they aren't present in the report.
     minimum_rows = 3
+    if len(func_slow) > minimum_rows:
+        for row in func_slow:
+            qor_report.append(row)
     if len(func_worst) > minimum_rows:
         for row in func_worst:
             qor_report.append(row)
@@ -164,6 +175,27 @@ def get_qor_data(qor_report):
         if rtn != -1:
             qor_report_temp.append(line)
             qor_report_temp.append(qor_report[i+1])
+            rtn = line.find('func_slow')
+            if rtn != -1:
+                for k in range(2,12):
+                    rtn = qor_report[i+k].find(WNS_STR)
+                    if rtn != -1:
+                        qor_report_temp.append(qor_report[i+k])
+                    rtn = qor_report[i+k].find(TOTAL_NEG_SLACK_STR)
+                    if rtn != -1:
+                        qor_report_temp.append(qor_report[i+k])
+                    rtn = qor_report[i+k].find(NUM_VIO_PTH_STR)
+                    if rtn != -1:
+                        qor_report_temp.append(qor_report[i+k])
+                    rtn = qor_report[i+k].find(HOLD_VIOLATION_STR)
+                    if rtn != -1:
+                        qor_report_temp.append(qor_report[i+k])
+                    rtn = qor_report[i+k].find(TOTAL_HOLD_VIOLATION_STR)
+                    if rtn != -1:
+                        qor_report_temp.append(qor_report[i+k])
+                    rtn = qor_report[i+k].find(NUM_HOLD_VIO_STR)
+                    if rtn != -1:
+                        qor_report_temp.append(qor_report[i+k])
             rtn = line.find('func_worst')
             if rtn != -1:
                 for k in range(2,12):
