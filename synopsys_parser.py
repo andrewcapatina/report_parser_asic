@@ -262,7 +262,7 @@ def parse_clock_qor(qor_report, stage):
     """
     i = 0
     clock_qor = []
-    clock_qor.append([['Stage:', stage]])
+    clock_qor.append([['STAGE:', stage]])
     for line in qor_report:
         rtn = line.find("Summary Reporting for Corner")
         if rtn != -1:
