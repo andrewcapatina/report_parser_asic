@@ -11,7 +11,7 @@ import gzip as gz
 import pandas as pd
 
 ALIGN_LENGTH = 25  # Used for aligning words in text file.
-FOLDER_READ_PATH = "../"       # Location of reports to be parsed.
+FOLDER_READ_PATH = "../syn/reports/"       # Location of reports to be parsed.
 FOLDER_WRITE_PATH = "outputs/"      # Location of the output parsed file.
 STAGES = ['place', 'postcts', 'postcts_hold', 'route', 'route_hold']  # Stages for flow.
 # Columns in a summary timing report. Modify if Cadence changes reporting.
