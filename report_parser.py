@@ -62,7 +62,7 @@ def main():
                 qor_report = sp.format_qor_data_syn(qor_report, stage)
 
                 # Add flow and stage label.
-                qor_report.insert(0, ["Flow:", "syn"])
+                qor_report.insert(0, ["FLOW:", "syn"])
                 qor_report.insert(1, ["STAGE:", stage])
 
                 for row in qor_report:
@@ -102,8 +102,8 @@ def main():
                 # Add report for this stage to the list of reports. 
                 clock_qor_reports.append(clock_qor)
 
-        qor_reports.insert(0, [["Flow:", "apr"]])
-        clock_qor_reports.insert(0, [["Flow:", "apr"]])
+        qor_reports.insert(0, [["FLOW:", "apr"]])
+        clock_qor_reports.insert(0, [["FLOW:", "apr"]])
 
         for row in qor_reports:
             syn_qor.append(row)

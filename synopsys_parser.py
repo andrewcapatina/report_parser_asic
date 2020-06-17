@@ -11,8 +11,8 @@ import csv
 import time
 
 FOLDER_READ_PATH = "reports/"       # Location of reports to be parsed.
-FOLDER_READ_PATH_SYN = "reports/syn/reports/" # Location of reports from synthesis.
-FOLDER_READ_PATH_APR = "reports/apr/reports/" # Location of reports from place and route. 
+FOLDER_READ_PATH_SYN = "../syn/reports/" # Location of reports from synthesis.
+FOLDER_READ_PATH_APR = "../apr/reports/" # Location of reports from place and route. 
 FOLDER_WRITE_PATH = "outputs/"      # Location of the output parsed file.
 
 
