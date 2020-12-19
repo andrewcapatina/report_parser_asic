@@ -33,8 +33,8 @@ def read_file(file_path):
         with gz.open(file_path + ".gz", 'r') as gp:
             report_temp = gp.readlines()
     except:
-        print("File name for the given design was not found.")
-        return 1
+        print("File path {0} not found.".format(file_path))
+        return ""
 
     # Converts bytes object to string. 
     report = []
@@ -82,6 +82,9 @@ def parse_report(report):
         input: qor_report: list containing contents of report.
         output: report_contents: list containing parsed data.
     """
+    # Check if the input parameter is empty.
+    if not report:
+	return 
     report_contents = []
     for line in report:
         line = line.replace('|', '')

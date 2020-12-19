@@ -18,7 +18,7 @@ FOLDER_WRITE_PATH = "outputs/"      # Location of the output parsed file.
 
 # Update the below global variables if qor.rpt or clock_qor.rpt
 # file reporting format changes.
-ALIGN_LENGTH = 25   # The largest string to be displayed for reporting. 
+ALIGN_LENGTH = 25   # Space between each column.  
 HOLD_VIOLATION_STR = "Worst Hold Violation:"
 TOTAL_HOLD_VIOLATION_STR = 'Total Hold Violation:'
 NUM_HOLD_VIO_STR = "No. of Hold Violations"
@@ -123,6 +123,8 @@ def format_qor_data_syn(qor_report, stage):
 
     """
     qor_report_temp = []
+    
+    # This can be simplified. Just append when a match is found.
     qor_report_temp.append(["Timing Path Group", WNS_STR, TOTAL_NEG_SLACK_STR,
                             NUM_VIO_PTH_STR, HOLD_VIOLATION_STR, TOTAL_HOLD_VIOLATION_STR,
                             NUM_HOLD_VIO_STR])
@@ -297,7 +299,7 @@ def read_file_apr(file_path):
         with open(file_path) as fp:
             qor_report = fp.readlines()
     except:
-        print("FILE NOT FOUND: " + file_path)
+        print("file {0} not found.".format(file_path))
         return ""
 
     return qor_report
@@ -314,7 +316,7 @@ def read_file_syn(file_path):
         with open(file_path) as fp:
             qor_report = fp.readlines()
     except:
-        print("FILE NOT FOUND: " + file_path)
+        print("file {0} not found.".format(file_path))
         return ""
 
     return qor_report

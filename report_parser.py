@@ -28,6 +28,8 @@ def main():
     print("Welcome to ASIC tool Report Parser.")
     print("Please type which tool has generated the reports.")
     print("Options are: " + ASIC_TOOLS[0] + ", " + ASIC_TOOLS[1])
+
+    # Version dependency for getting user input. 
     if sys.version_info[0] < 3:
         tool_option = raw_input()
     else:
@@ -43,10 +45,9 @@ def main():
         else:
             top_design = input("Please enter the design name\n")
 
-
-        qor_reports = []
-        clock_qor_reports = []
-        # Only one stage in flow for DC shell. (/syn/reports/)
+	# Variable containing the qor report.
+        qor_reports = []	
+	# Iterate over flows for dc_shell. 
         dc_stage = ["dc", "dct"]
         qor_reports = []
         for stage in dc_stage:
@@ -54,7 +55,6 @@ def main():
             to_open = top_design + "." + stage + ".qor.rpt"
             qor_report = sp.read_file_syn(to_open)
 
-            syn_qor = []
             # Parse report if it was found. 
             if qor_report != "":
 
@@ -65,9 +65,12 @@ def main():
                 qor_report.insert(0, ["FLOW:", "syn"])
                 qor_report.insert(1, ["STAGE:", stage])
 
+		# Append the reports to the variable containing 
+		# the entire collection. 
                 for row in qor_report:
                     qor_reports.append([row])
 
+	# Assign the parsed file to a new variable.
         syn_qor = qor_reports
 
         qor_reports = []
@@ -102,18 +105,22 @@ def main():
                 # Add report for this stage to the list of reports. 
                 clock_qor_reports.append(clock_qor)
 
-        qor_reports.insert(0, [["FLOW:", "apr"]])
-        clock_qor_reports.insert(0, [["FLOW:", "apr"]])
+	
+	# Label indicating data extracted from APR flow.
+	if clock_qor_reports:
+	        clock_qor_reports.insert(0, [["FLOW:", "apr"]])
 
         for row in qor_reports:
             syn_qor.append(row)
 
-        # Write results to CSV file and text file.
-        sp.write_qor_to_csv(top_design, syn_qor, "qor")
-        sp.write_data_to_text(top_design, syn_qor, "qor")
+	if syn_qor:
+        	# Write results to CSV file and text file.
+        	sp.write_qor_to_csv(top_design, syn_qor, "qor")
+        	sp.write_data_to_text(top_design, syn_qor, "qor")
 
-        sp.write_qor_to_csv(top_design, clock_qor_reports, "clock_qor")
-        sp.write_data_to_text(top_design, clock_qor_reports, "clock_qor")
+	if clock_qor_reports:
+        	sp.write_qor_to_csv(top_design, clock_qor_reports, "clock_qor")
+        	sp.write_data_to_text(top_design, clock_qor_reports, "clock_qor")
 
 
     # Checking if user selected Cadence tools.
@@ -126,8 +133,6 @@ def main():
         else:
             top_design = input("Please enter the design name.\n")
         stages_data = []
-        # Add titles to columns before getting data.
-        stages_data.append(cp.SUMMARY_COLUMNS)
         for stage in cp.STAGES:  # Iterate through stages of Cadence flow.
 
             # Create file path and read file.
@@ -135,22 +140,25 @@ def main():
             file_name = stage + ".summary"
             file_path = folder_path + file_name
 
-            # Error checking
             report = cp.read_file(file_path)
-            if report == 1:
-                return
 
-            # Parse report contents
-            report_contents = cp.parse_report(report)
+	    if report:
+		    # Parse report contents
+		    report_contents = cp.parse_report(report)
 
-            # Organize data for viewability.
-            stage_summary = cp.organize_data(report_contents)
-            stage_summary.insert(0, stage)
-            stages_data.append(stage_summary)
+		    # Organize data for viewability.
+		    stage_summary = cp.organize_data(report_contents)
+		    stage_summary.insert(0, stage)
+		    stages_data.append(stage_summary)
+	# Check if any data was actually collected.
+	# If not, don't write to the files. 
+	if stages_data:
+		# Add titles to columns before getting data.
+		stages_data.insert(0, cp.SUMMARY_COLUMNS)
 
-        # Write results to CSV file and text file.
-        cp.write_data_to_csv(top_design, stages_data)
-        cp.write_data_to_text(top_design, stages_data)
+		# Write results to CSV file and text file.
+		cp.write_data_to_csv(top_design, stages_data)
+		cp.write_data_to_text(top_design, stages_data)
 
 
 if __name__ == "__main__":
