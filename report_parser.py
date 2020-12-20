@@ -50,8 +50,11 @@ def main():
 	# Iterate over flows for dc_shell. 
         dc_stage = ["dc", "dct"]
         qor_reports = []
+	# This portion of the code will parse the 
+	# .qor files under /syn for synthesis 
+	# and physical synthesis flows. 
         for stage in dc_stage:
-            # Create file path and read the file.
+            # Create file name and read the file.
             to_open = top_design + "." + stage + ".qor.rpt"
             qor_report = sp.read_file_syn(to_open)
 
@@ -75,19 +78,24 @@ def main():
 
         qor_reports = []
         clock_qor_reports = []
-        # Iterate through all stages of synopsys place and route flow.
-        for stage in sp.STAGES:
+	# This portion of the code will parse 
+	# files under /apr for Automatic Place &
+	# Route flows (APR). 
+	# The current files parsed here are .qor and 
+	# .clock_qor reports.
+        for stage in sp.APR_STAGES:
 
-            # Create file path and read the file.
+            # Create file name and read the file.
             to_open = top_design + "." + stage + ".qor.rpt"
             qor_report = sp.read_file_apr(to_open)
             # Error checking. Skip parsing the file if it wasn't found. 
             if qor_report != "":
 
-                # Get all important values from qor report.
+                # This function extracts data from
+		# the qor_report.
                 qor_report = sp.get_qor_data(qor_report)
-
-                # Make the data viewable.
+		
+                # Make the extracted data viewable.
                 qor_report = sp.format_qor_data_apr(qor_report, stage)
 
                 # Add report for this stage in a list saved.

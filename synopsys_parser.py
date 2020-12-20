@@ -1,8 +1,14 @@
 """
     Andrew Capatina
+    date: 12.19.2020
     Description:
         This script parses a QOR report and creates a comma seperated
         list with values to be loaded into an excel spreadsheet.
+	This file is for parsing report outputs from DC and ICC2;
+	the synopsys applications. 
+	Current parsing abilities:
+		1.) All qor files under /apr and /syn.
+		2.) All clock_qor files under /apr.
 """
 
 import pandas as pd
@@ -26,8 +32,8 @@ TOTAL_NEG_SLACK_STR = 'Total Negative Slack:'
 WNS_STR = 'Critical Path Slack:'
 NUM_VIO_PTH_STR = 'No. of Violating Paths'
 
-# Variable for different stages in the ASIC design flow.
-STAGES = ['place2', 'cts2', 'postcts2', 'route2']
+# Variable for different stages in the ASIC APR design flow.
+APR_STAGES = ['place2', 'cts2', 'postcts2', 'route2']
 
 # Labels used for columns of clock_qor report.
 COLUMN_LABELS_CLOCK_QOR = ['Sinks', 'Levels', 'Clock Repeater Count',
@@ -40,6 +46,9 @@ def format_qor_data_apr(qor_report, stage):
     Function to make the data easier to read 
     for CSV/text format.
 
+    This function is meant to format .qor files 
+    that were gathered from /apr/reports folder.
+
     input: qor_report: list containing items to be organized.
     input: stage: string of current stage being processed.
     """
@@ -47,6 +56,7 @@ def format_qor_data_apr(qor_report, stage):
     func_worst = []
     func_best = []
 
+    # For each scenario, add the labels for the data that will be appended in the structure. 
     func_slow.append(["func_slow"])
     func_slow.append(["Clock Path", WNS_STR, TOTAL_NEG_SLACK_STR, NUM_VIO_PTH_STR, HOLD_VIOLATION_STR, TOTAL_HOLD_VIOLATION_STR, NUM_HOLD_VIO_STR])
 
@@ -59,12 +69,16 @@ def format_qor_data_apr(qor_report, stage):
     test_worst = []
     test_best = []
 
+    # For each scenario, add the labels for the data that will be appended in the structure. 
     test_worst.append(["test_worst"])
     test_worst.append(["Clock Path", WNS_STR, TOTAL_NEG_SLACK_STR, NUM_VIO_PTH_STR])
 
     test_best.append(["test_best"])
     test_best.append(["Clock Path", HOLD_VIOLATION_STR, TOTAL_HOLD_VIOLATION_STR, NUM_HOLD_VIO_STR])
 
+    # The below for loop adds the relevant data to each of the data structures.
+    # The data appended is essentially the values for each of the labels that were added above
+    # for each clock of each scenario. 
     i = 0
     for line in qor_report:
         rtn = line.find("Scenario")
@@ -92,6 +106,7 @@ def format_qor_data_apr(qor_report, stage):
     qor_report.append(["STAGE:", stage])
     # Not all scenarios may be present in the report. Don't append all scenario variables 
     # if they aren't present in the report.
+    # TODO: simplify this by removing the magic number.
     minimum_rows = 3
     if len(func_slow) > minimum_rows:
         for row in func_slow:
@@ -118,16 +133,21 @@ def format_qor_data_syn(qor_report, stage):
     Function to make the data easier to read 
     for CSV/text format.
 
+    This function formats the qor files from 
+    /syn/reports.
+
     input: qor_report: list containing items to be organized.
     input: stage: string of current stage being processed.
 
     """
     qor_report_temp = []
     
-    # This can be simplified. Just append when a match is found.
+    # Adding the labels to the data that will be appended below.
     qor_report_temp.append(["Timing Path Group", WNS_STR, TOTAL_NEG_SLACK_STR,
                             NUM_VIO_PTH_STR, HOLD_VIOLATION_STR, TOTAL_HOLD_VIOLATION_STR,
                             NUM_HOLD_VIO_STR])
+
+    # Search the file and add all the relevant data to the labels.
     report_row = []
     for line in qor_report:
         line = line.strip("'")
@@ -154,6 +174,7 @@ def format_qor_data_syn(qor_report, stage):
         if rtn != -1:
             report_row.append(line.split()[4])
             report_row = pd.DataFrame(report_row)
+	    # Transpose for readability.
             report_row = report_row.transpose()
             report_row = report_row.values.tolist()
             qor_report_temp.append(report_row)
@@ -167,16 +188,23 @@ def get_qor_data(qor_report):
     """
         File to take a qor report file and grab important contents
 
+	Only works on qor files from /syn/reports.
+
         inputs: qor_report: .qor file that is a list of strings.
 
     """
     i = 0
     qor_report_temp = []
+    
     for line in qor_report:
-        rtn = line.find('Scenario')
+        # Search for the scenario label for the clock path.
+	rtn = line.find('Scenario')
         if rtn != -1:
+	    # Append the scenario of the data. 
             qor_report_temp.append(line)
+	    # Append the clock path.
             qor_report_temp.append(qor_report[i+1])
+	    # Get the data associated with the scenario.
             rtn = line.find('func_slow')
             if rtn != -1:
                 for k in range(2,12):
@@ -198,6 +226,7 @@ def get_qor_data(qor_report):
                     rtn = qor_report[i+k].find(NUM_HOLD_VIO_STR)
                     if rtn != -1:
                         qor_report_temp.append(qor_report[i+k])
+	    # The scenarios below save less data. Maybe this could be improved at a later time when needed. 
             rtn = line.find('func_worst')
             if rtn != -1:
                 for k in range(2,12):
@@ -249,52 +278,62 @@ def get_qor_data(qor_report):
 
 
 
-        i += 1
+        i += 1	# Keeps track of where we are in list. 
 
     qor_report = qor_report_temp
 
-    return qor_report
+    return qor_report	
 
 
 def parse_clock_qor(qor_report, stage):
     """
-        Function to parse clock_qor.
+        Function to parse clock_qor file taken from 
+	/apr/folder.
+
         input: qor_report: list containing report.
         input: stage: current stage 
     """
     i = 0
     clock_qor = []
+    # Prepending data indicating which stage in APR flow.
     clock_qor.append([['STAGE:', stage]])
     for line in qor_report:
+	# Searching for the specific corner.
         rtn = line.find("Summary Reporting for Corner")
         if rtn != -1:
             k = 0
+	    # Append the corner being saved
             clock_qor.append([[line]])
+	    # Append the lables for the clock paths.
             clock_qor.append([['Clock Group', 'Attrs','Sinks','Levels','Clock Repeater Count',
                     'Clock Repeater Area', 'Clock Stdcell Area', 'Max Latency',
                     'Global Skew', 'Trans DRC Count', 'Cap DRC Count']])
+	    # Search until the string 'All Clocks' found.
             while qor_report[i + k].find('All Clocks') == -1:
+		# Append the mode and scenario.
                 if qor_report[i + k].find('###') != -1:
                     clock_qor.append([qor_report[i+k]])
+		# Append the clock path data. 
                 if qor_report[i + k].find('CLK') != -1:
                     clock_qor.append([qor_report[i+k].split()])
                 if qor_report[i + k].find('clk') != -1:
                     clock_qor.append([qor_report[i+k].split()])
 
-                k += 1
+                k += 1	# used to select each line as while condition true.
 
         i += 1
 
     return clock_qor
 
 
-def read_file_apr(file_path):
+def read_file_apr(file_name):
     """
         Function to read file and return the whole file.
-        input: file_path - file path to qor files.
+
+        input: file_name - file name to read.
         output: qor_report - file contents returned.
     """
-    file_path = FOLDER_READ_PATH_APR + file_path
+    file_path = FOLDER_READ_PATH_APR + file_name
     try:
         with open(file_path) as fp:
             qor_report = fp.readlines()
@@ -305,13 +344,14 @@ def read_file_apr(file_path):
     return qor_report
 
 
-def read_file_syn(file_path):
+def read_file_syn(file_name):
     """
         Function to read file and return the whole file.
-        input: file_path - file path to qor files.
+
+        input: file_name - name of file to read.
         output: qor_report - file contents returned.
     """
-    file_path = FOLDER_READ_PATH_SYN + file_path
+    file_path = FOLDER_READ_PATH_SYN + file_name
     try:
         with open(file_path) as fp:
             qor_report = fp.readlines()
@@ -355,7 +395,7 @@ def write_data_to_text(top_design, reports, file_type):
 
         input: top_design: string indicating design name.
         input: reports: list of lists containing report data.
-        input: file_type: type of report being parsed.
+        input: file_type: type of report being parsed.(clock_qor,qor,etc).
         input: syn_or_apr: string either containing "apr" or "syn" for 
             the /apr and /syn reports folders.
     """
