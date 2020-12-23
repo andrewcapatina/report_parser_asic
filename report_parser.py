@@ -135,20 +135,23 @@ def main():
     if tool_option == ASIC_TOOLS[1]:
         print("Selected cadence tools.")
         print("Current reports available for parsing:")
-        print("- .summary files")
+        print("- .summary")
+	print("- .max.full_clock")
         if sys.version_info[0] < 3:
             top_design = raw_input("Please enter the design name.\n")
         else:
             top_design = input("Please enter the design name.\n")
         stages_data = []
-        for stage in cp.STAGES:  # Iterate through stages of Cadence flow.
+	# This for loop processes .summary files.
+        for stage in cp.STAGES:  # Iterate through stages of Cadence APR flow. 
 
             # Create file path and read file.
-            folder_path = FOLDER_READ_PATH + top_design + ".innovus" + "/"
+	    # .summary files contained under /apr/reports/.
+            folder_path = "../apr/" + FOLDER_READ_PATH + top_design + ".innovus" + "/"
             file_name = stage + ".summary"
             file_path = folder_path + file_name
 
-            report = cp.read_file(file_path)
+            report = cp.read_gz_file(file_path)
 
 	    if report:
 		    # Parse report contents
@@ -168,6 +171,26 @@ def main():
 		cp.write_data_to_csv(top_design, stages_data)
 		cp.write_data_to_text(top_design, stages_data)
 
+	slack_list = []		# Contains worst failing times for one stage.
+	slack_times = []	# Contains worst failing times for APR flow. 
+	# This for loop processes .max.full_clock files.
+	for stage in cp.STAGES_full_clock:	# Iterate through stages of cadence APR flow.
+
+            # Create file path and read file.
+            folder_path = "../apr/" + FOLDER_READ_PATH
+            file_name = top_design + "." + stage + "2" + ".timing" + ".max.full_clock" + ".rpt"
+            file_path = folder_path + file_name
+
+	    # Read the file and store it in a variable.
+            report = cp.read_gz_file(file_path)
+	    # parse the file and extract all the necessary information.    
+	    slack_list = cp.parse_clock_path_report(report, stage)
+	    if slack_list != []:
+		for item in slack_list:
+			slack_times.append(item)
+	    
+	# Print out the worst slack times found to a .txt file.
+	cp.write_full_clock_data_txt(top_design, slack_times)
 
 if __name__ == "__main__":
     main()
